@@ -1,5 +1,5 @@
 <?PHP 
-if (!isset($_GET['u']) || !isset($_GET['t'])) {
+if (!$_GET['u'] || !$_GET['t']) {
     http_response_code(400);
     exit;
 }
@@ -10,10 +10,11 @@ if (!$user) {
     http_response_code(406);
     exit;
 }
-$expectedHash = md5($email.$user['password']);
+$expectedHash = $user['password'];
 if ($expectedHash != $hash) {
-    http_response_code(403);
-    exit;
-}
+    if(!checkCredentialsR($email, $hash)) {
+        http_response_code(403);
+        exit;
+    }
 
-?>
+}

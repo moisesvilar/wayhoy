@@ -1,6 +1,5 @@
 <?php
 require_once("includes/ini.php");
-require_once("includes/login.php");
 
 global $method;
 global $headers;
@@ -132,41 +131,38 @@ elseif ($method == 'POST' && !isset($_GET['album']) && startsWith($contentType, 
         http_response_code(500);
         exit;
     }
+
     $config = parse_ini_file('includes/config.ini');
     $images_directory = $config['images_directory'];
     $thumbnails_directory = $config['thumbnails_directory'];
-	$filename = hash_file('md5', $_FILES['file']['tmp_name']).'.jpg';
-	$filename = md5(time().$filename).'.jpg';
-	$tipo =$_FILES['file']['name'];
-	 if ($image = image(false, false, $filename, $user)) {
-        echo toJson($image);
-		http_response_code(409);
-        exit;
-    }
-	if ($_FILES['file']['type']=='video/mp4'){
-		$url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.'4d503825cd4f8cdfa83f613c0e77a3d0.jpg';
-		$url = siteURL().$config['project']."/".$images_directory.str_replace('.jpg','.mp4',$filename);
-		$filename = str_replace('.jpg','.mp4',$filename);
-		move_uploaded_file($_FILES['file']['tmp_name'], $images_directory.$filename);
-		$tipo =$_FILES['file']['name'].'mp4';
-	}else{ 
-		$url = siteURL().$config['project']."/".$images_directory.$filename;
-    	$url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.$filename;
-		$resultThumbnail = prepareThumbnailImage($_FILES['file']['tmp_name'], $thumbnails_directory.$filename);
-		$resultOriginal = prepareOriginalImage($_FILES['file']['tmp_name'], $images_directory.$filename);
+    $filename = hash_file('md5', $_FILES['file']['tmp_name']).'.jpg';
+	$filename = md5(time().$filename).".jpg";
+    $url = siteURL().$config['project']."/".$images_directory.$filename;
+    $url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.$filename;
+
+    $resultOriginal = prepareOriginalImage($_FILES['file']['tmp_name'], $images_directory.$filename);
+    $resultThumbnail = prepareThumbnailImage($_FILES['file']['tmp_name'], $thumbnails_directory.$filename);
+
     /**
      * 500: error al copiar el archivo
      */
-    	if (!$resultOriginal || !$resultThumbnail) {
-        	http_response_code(500);
-        	exit;
-    	}	
-	}
+    if (!$resultOriginal || !$resultThumbnail) {
+        http_response_code(500);
+        exit;
+    }
+
+    /**
+     * Si la imagen ya existe, la devolvemos sin insertar en la base de datos.
+     */
+    if ($image = image(false, false, $filename, $user)) {
+        echo toJson($image);
+        exit;
+    }
 
     /**
      * 500: error al insertar la imagen en la base de datos.
      */
-    if (($image = image_in($filename, $url, $url_thumbnail, $user, $tipo)) === false) {
+    if (($image = image_in($filename, $url, $url_thumbnail, $user)) === false) {
         http_response_code(500);
         exit;
     }
@@ -210,35 +206,25 @@ elseif ($method == 'POST' && isset($_GET['album']) && startsWith($contentType, '
         http_response_code(403);
         exit;
     }
-	
-	if( $_FILES['file']['size'] > 10*1024*1024){
-	http_response_code(401);
-        exit;
-	}
+
     $config = parse_ini_file('includes/config.ini');
     $images_directory = $config['images_directory'];
     $thumbnails_directory = $config['thumbnails_directory'];
-	$filename = hash_file('md5', $_FILES['file']['tmp_name']).'.jpg';
+    $filename = hash_file('md5', $_FILES['file']['tmp_name']).'.jpg';
 	$filename = md5(time().$filename).'.jpg';
-	$tipo =$_FILES['file']['name'];
-	if ($_FILES['file']['type']=='video/mp4'){
-		$url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.'4d503825cd4f8cdfa83f613c0e77a3d0.jpg';
-		$url = siteURL().$config['project']."/".$images_directory.str_replace('.jpg','.mp4',$filename);
-		$filename = str_replace('.jpg','.mp4',$filename);
-		move_uploaded_file($_FILES['file']['tmp_name'], $images_directory.$filename);
-	}else{ 
-		$url = siteURL().$config['project']."/".$images_directory.$filename;
-    	$url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.$filename;
-		$resultThumbnail = prepareThumbnailImage($_FILES['file']['tmp_name'], $thumbnails_directory.$filename);
-		$resultOriginal = prepareOriginalImage($_FILES['file']['tmp_name'], $images_directory.$filename);
+    $url = siteURL().$config['project']."/".$images_directory.$filename;
+    $url_thumbnail = siteURL().$config['project']."/".$thumbnails_directory.$filename;
+
+    $resultOriginal = prepareOriginalImage($_FILES['file']['tmp_name'], $images_directory.$filename);
+    $resultThumbnail = prepareThumbnailImage($_FILES['file']['tmp_name'], $thumbnails_directory.$filename);
+
     /**
      * 500: error al copiar el archivo
      */
-    	if (!$resultOriginal || !$resultThumbnail) {
-        	http_response_code(500);
-        	exit;
-    	}	
-	}
+    if (!$resultOriginal || !$resultThumbnail) {
+        http_response_code(500);
+        exit;
+    }
 
     /**
      * Si la imagen no existe, la insertamos en la base de datos
@@ -247,7 +233,7 @@ elseif ($method == 'POST' && isset($_GET['album']) && startsWith($contentType, '
         /**
          * 500: error al insertar la imagen en la base de datos.
          */
-        if (($image = image_in($filename, $url, $url_thumbnail, $user, $tipo)) === false) {
+        if (($image = image_in($filename, $url, $url_thumbnail, $user)) === false) {
             http_response_code(500);
             exit;
         }
@@ -330,7 +316,7 @@ elseif ($method == 'POST' && isset($_GET['user']) && isset($_GET['album']) && st
 	$imageAlbumId = $body['id'];
     $imageAlbum = image_album(false, false, $imageAlbumId);
     //$id = $imageAlbum['image_id'];
-	$idd = $imageAlbum['image_album_id'];
+	 $idd = $imageAlbum['image_album_id'];
     $image = image_album(false, false, $idd);
     echo toJson($image);
 }
@@ -468,7 +454,7 @@ elseif ($method == 'PUT' && isset($_GET['album'])) {
     /**
      * 500: error al actualizar la imagen
      */
-    if (!image_album_up($imageAlbumId, $body['title'], nl2br($body['description']), $body['subdescription'], $body['duration'])) {
+    if (!image_album_up($imageAlbumId, $body['title'], $body['description'], $body['subdescription'])) {
         http_response_code(500);
         exit;
     }
@@ -526,7 +512,7 @@ elseif ($method == 'DELETE' && isset($_GET['album']) && isset($_GET['id'])) {
         exit;
     }
 	if (!updateorderFromelim($orden, $album)) {
-        http_response_code(500);
+        http_response_code(505);
         exit;
     }
 	exit;

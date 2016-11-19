@@ -1,0 +1,13 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="submit()">
+        <h1>lembrar contrasinal</h1>
+        <div class="form-group">
+            <label for="old-password">escreba o seu email</label>
+            <div class="alert alert-danger" data-ng-show="model.errorEmail">{{model.errorEmail}}</div>
+            <input type="email" class="form-control" id="old-password" data-ng-model="model.email" placeholder="Escriba su email" required>
+        </div>
+        <div class="alert alert-success" data-ng-show="model.success">comprobe o seu email es siga as instruccións</div><br/>
+        <button type="submit" class="btn btn-success btn-block">recuperar contrasinal</button>
+    </form>
+</div>

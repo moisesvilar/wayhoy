@@ -1,0 +1,37 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h4><a data-ng-href="screen-users/{{screen.code}}" class="thumbnail btn"><i class="fa fa-users"></i> Usuarios </a></h4>
+    <button class="btn btn-danger btn-block thumbnail" data-toggle="modal" data-target="#myModal">
+        <i class="fa fa-times"></i> eliminar
+    </button>
+    <form data-ng-submit="update()">
+        <div class="form-group">
+            <label for="code">código</label>
+            <input type="text" class="form-control" id="code" data-ng-model="screen.code">
+        </div>
+        <div class="form-group">
+            <label for="name">nome</label>
+            <span class="label label-danger" data-ng-show="model.errorName">{{model.errorName}}</span>
+            <input type="text" class="form-control" id="name" data-ng-model="model.name" placeholder="Nombre de la pantalla">
+        </div>
+        <button type="submit" class="btn btn-success btn-block">gardar</button><br/><br/><br/>
+    </form>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">eliminar pantalla</br>{{model.name}}<h4>
+            </div>
+            <div class="modal-body" id="mod-body">
+                Con esta acción eliminarás esta pantalla
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove();">ok</button>
+            </div>
+        </div>
+    </div>
+</div>

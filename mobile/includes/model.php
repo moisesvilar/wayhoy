@@ -1,3 +1,4 @@
+
 <?php
 /**
  * Obtiene un token temporal
@@ -12,6 +13,43 @@ function token($sub=false) {
     return strval($minutes);
 }
 
+function users($admin) {
+    $admin = db_escape($admin);
+    $q = "SELECT * FROM user WHERE admin = '$admin' AND deleted IS NULL";
+    $users = db_result($q, true);
+    foreach($users as $key=>$user) {
+        $users[$key]['permissions'] = get_user_permissions($user);
+    }
+    return db_result($q, true);
+}
+
+function get_user_permissions($user) {
+    $result = array();
+    $q = "SELECT * FROM permissions WHERE user = '$user[email]'";
+    $permissions = db_result($q);
+    $result[] = array(
+        'id' => 'albums',
+        'name' => 'Xestionar álbumes',
+        'value' => $permissions['albums'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'link_images',
+        'name' => 'Asociar / Desasociar imaxes',
+        'value' => $permissions['link_images'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'upload_images',
+        'name' => 'Subir imaxes',
+        'value' => $permissions['upload_images'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'programming_albums',
+        'name' => 'Programar albumes',
+        'value' => $permissions['programming_albums'] ? '1' :  '0'
+    );
+    return $result;
+}
+
 /**
  * Obtiene un usuario
  * @param $email string El email del usuario.
@@ -19,9 +57,10 @@ function token($sub=false) {
  */
 function user($email) {
     $email = db_escape($email);
-    $q = "SELECT * FROM user WHERE email = '$email'";
+    $q = "SELECT * FROM user WHERE email = '$email' AND deleted IS NULL";
     $info = db_select($q);
-    return count($info) > 0 ? $info[0] : false;
+    $info[0]['permissions'] = get_user_permissions($info[0]);
+    return $info[0];
 }
 
 /**
@@ -30,13 +69,39 @@ function user($email) {
  * @param $password string El hash MD5 del nuevo usuario.
  * @return bool|mysqli_result El resultado de la operación.
  */
-function user_in($id, $email, $password) {
+function user_in($id, $email, $password, $name=false, $nif=false, $admin=false) {
     $id = db_escape($id);
     $email = db_escape($email);
     $password = db_escape($password);
-    $q = "
-    UPDATE user SET email = '$email', password = '$password', registration_ts = CURRENT_TIMESTAMP WHERE user_id_r = '$id'
-    ";
+    if(!$name && $nif && !$password && !$admin) {
+        $q = "
+        INSERT INTO user (
+        email,
+        password,
+        registration_ts
+        ) VALUES (
+        '$email',
+        '$password',
+        CURRENT_TIMESTAMP
+        )
+        ON DUPLICATE KEY UPDATE
+        email = '$email',
+        password = '$password',
+        registration_ts = CURRENT_TIMESTAMP
+        ";
+    }
+    else {
+        $q = "
+        INSERT INTO user SET
+        user_id_r = '$id',
+        email = '$email',
+        password = '$password',
+        name = '$name',
+        nif = '$nif',
+        role_id = '3',
+        admin = '$admin'
+        ";
+    }
     return db_query($q);
 }
 
@@ -46,21 +111,50 @@ function user_in($id, $email, $password) {
  * @param string $password El hash MD5 de la nueva contraseña del usuario.
  * @return bool|mysqli_result El resultado de la operación.
  */
-function user_up($email, $password) {
+function user_up($email, $password=false, $name=false, $nif=false) {
     $email = db_escape($email);
-    $password = db_escape($password);
-    $q = "
-    UPDATE user SET
-    password = '$password',
-    update_ts = CURRENT_TIMESTAMP
-    WHERE email = '$email'";
+    if($password) {
+        $password = db_escape($password);
+        $q = "
+        UPDATE user SET
+        password = '$password',
+        update_ts = CURRENT_TIMESTAMP
+        WHERE email = '$email'";
+        return db_query($q);
+    }
+    elseif($name && $nif) {
+        $name = db_escape($name);
+        $nif = db_escape($nif);
+        $q = "
+        UPDATE user SET
+        name = '$name',
+        nif = '$nif',
+        update_ts = CURRENT_TIMESTAMP
+        WHERE email = '$email'
+        ";
+        return db_query($q);
+    }
+}
+
+function user_de($email) {
+    $email = db_escape($email);
+    $q = "UPDATE user SET deleted = CURRENT_TIMESTAMP WHERE email = '$email'";
     return db_query($q);
 }
-function user_de($idCustomer) {
-    $idCustomer = db_escape($idCustomer);
-    $q = " DELETE FROM user WHERE user_id_r = '$idCustomer'";
-    return db_query($q);
+
+function permissions($admin, $column=false) {
+    $admin =db_escape($admin);
+    if(!$column) {
+        $q = "SELECT * FROM permissions WHERE user = '$admin'";
+        return db_select($q);
+    }
+    else {
+        $q = "SELECT $column FROM permissions WHERE user = '$admin' LIMIT 1";
+        $row = db_result($q);
+        return array('permission' => $row[$column]);
+    }
 }
+
 /**
  * Obtiene las pantallas de un usuario.
  * @param string $user El email del usuario.
@@ -71,10 +165,14 @@ function screens($user) {
     $q = "
     SELECT
     screen.code,
-    user_screen.name
+    screen.licensed,
+    CASE WHEN user_screen.name IS NOT NULL THEN user_screen.name
+    ELSE screen.name END AS name
     FROM screen
-    INNER JOIN user_screen ON screen.code = user_screen.screen
-    WHERE user_screen.user = '$user'
+    LEFT JOIN user_screen ON screen.code = user_screen.screen
+    WHERE (user_screen.user = '$user' OR screen.user = '$user')
+    GROUP BY screen.code
+    ORDER BY name
     ";
     return db_result($q, true);
 }
@@ -98,7 +196,16 @@ function screen($code=false, $icc=false, $user=false) {
     }
     elseif ($code && $user) {
         $user = db_escape($user);
-        $q = "SELECT screen.*, user_screen.name as name, user_screen.ts_up as updated FROM screen INNER JOIN user_screen ON user_screen.screen = screen.code WHERE user_screen.user = '$user' AND screen.code = '$code'";
+        $q = "
+        SELECT screen.*,
+        CASE WHEN user_screen.name IS NOT NULL THEN user_screen.name
+        ELSE screen.name END AS name
+        FROM screen
+        LEFT JOIN user_screen ON user_screen.screen = screen.code
+        WHERE (user_screen.user = '$user' OR screen.user = '$user')
+        AND screen.code = '$code'
+        LIMIT 1
+        ";
     }
     return db_result($q);
 }
@@ -115,8 +222,7 @@ function user_screen($user=false, $screen=false) {
     $q = "
     SELECT
     user_screen.screen as code,
-    user_screen.name as name, 
-	user_screen.user as user
+    user_screen.name as name
     FROM user_screen
     WHERE 1=1
     ";
@@ -165,7 +271,11 @@ function user_screen_up($code, $name) {
  */
 function albums($user) {
     $user = db_escape($user);
-    $q = "SELECT * FROM album WHERE album.user = '$user' ORDER BY creation_ts DESC";
+    $q = "
+    SELECT * FROM album
+    WHERE album.user = '$user' OR album_id IN (SELECT album_id FROM album_user WHERE user = '$user')
+    ORDER BY creation_ts DESC
+    ";
     $albums = db_result($q, true);
     if ($albums === false) return false;
     $result = array();
@@ -174,6 +284,7 @@ function albums($user) {
         $result[$i]['id'] = $album['album_id'];
         $result[$i]['name'] = $album['name'];
         $result[$i]['images'] = images($album['album_id']);
+        $result[$i]['is_mine'] = $album['user'] == $user ? '1' : '0';
         $i++;
     }
     return $result;
@@ -184,13 +295,14 @@ function albums($user) {
  * @param int $id El identificador del album.
  * @return array|bool El album especificado o false si ha ocurrido algún error.
  */
-function album($id) {
+function album($id, $user=false) {
     $id = db_escape($id);
     $q = "SELECT * FROM album WHERE album_id = '$id'";
     $album = db_result($q);
     $result['id'] = $album['album_id'];
     $result['name'] = $album['name'];
     $result['images'] = images($album['album_id']);
+    $result['is_mine'] = $user && $album['user'] == $user ? '1' : '0';
     return $result;
 }
 
@@ -221,14 +333,9 @@ function images($album=false, $user=false, $filename=false, $alwaysArray=false) 
         $i=0;
         foreach($images as $image) {
             $result[$i]['id'] = $image['image_album_id'];
-			$result[$i]['idim'] = $image['image_id'];
-            $result[$i]['url_thumbnail'] = $image['url_thumbnail'];
-            $result[$i]['url'] = '/mobile/images/'.$image['filename'];
+            $result[$i]['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
+            $result[$i]['url'] = 'mobile/images/'.$image['filename'];
 			$result[$i]['position'] = $image['posicion'];
-			$result[$i]['duration'] = $image['duration'];
-			$result[$i]['title'] = $image['title'];
-			$result[$i]['description'] = preg_replace('#<br\s*/?>#i', "", $image['description']);
-			$result[$i]['subdescription'] = $image['subdescription'];
             $i++;
         }
         return $result;
@@ -247,10 +354,8 @@ function images($album=false, $user=false, $filename=false, $alwaysArray=false) 
     $i=0;
     foreach($images as $image) {
         $result[$i]['id'] = $image['image_id'];
-        $result[$i]['url_thumbnail'] = $image['url_thumbnail'];
-        $result[$i]['url'] = '/mobile/images/'.$image['filename'];
-		$result[$i]['tipo'] = $image['tipo'];
-		$result[$i]['ts'] = $image['ts'];
+        $result[$i]['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
+        $result[$i]['url'] = 'mobile/images/'.$image['filename'];
         $i++;
     }
     return $result;
@@ -285,13 +390,12 @@ function image($id, $album=false, $filename=false, $user=false, $imageAlbumId=fa
         $image = db_result($q);
         if (!$image) return false;
         $result['id'] = $image['image_id'];
-        $result['url'] = '/mobile/images/'.$image['filename'];
-        $result['url_thumbnail'] = $image['url_thumbnail'];
+        $result['url'] = '../images/'.$image['filename'];
+        $result['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
         $result['filename'] = $image['filename'];
         $result['title'] = $image['title'];
-        $result['description'] = preg_replace('#<br\s*/?>#i', "", $image['description']);
+        $result['description'] = $image['description'];
         $result['subdescription'] = $image['subdescription'];
-		$result['duration'] = $image['duration'];
         return $result;
     }
     elseif ($filename && $user) {
@@ -299,11 +403,9 @@ function image($id, $album=false, $filename=false, $user=false, $imageAlbumId=fa
         $image = db_result($q);
         if (!$image) return false;
         $result['id'] = $image['image_id'];
-        $result['url'] = '/mobile/images/'.$image['filename'];
-        $result['url_thumbnail'] = $image['url_thumbnail'];
+        $result['url'] = 'mobile/images/'.$image['filename'];
+        $result['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
         $result['filename'] = $image['filename'];
-		$result[$i]['tipo'] = $image['tipo'];
-		$result[$i]['ts'] = $image['ts'];
         return $result;
     }
     elseif ($id) {
@@ -311,11 +413,9 @@ function image($id, $album=false, $filename=false, $user=false, $imageAlbumId=fa
         $image = db_result($q);
         if (!$image) return false;
         $result['id'] = $image['image_id'];
-        $result['url'] = '/mobile/images/'.$image['filename'];
-        $result['url_thumbnail'] = $image['url_thumbnail'];
+        $result['url'] = 'mobile/images/'.$image['filename'];
+        $result['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
         $result['filename'] = $image['filename'];
-		$result[$i]['tipo'] = $image['tipo'];
-		$result[$i]['ts'] = $image['ts'];
         return $result;
     }
     elseif($imageAlbumId) {
@@ -332,13 +432,12 @@ function image($id, $album=false, $filename=false, $user=false, $imageAlbumId=fa
         $image = db_result($q);
         if (!$image) return false;
         $result['id'] = $image['image_id'];
-        $result['url'] = '/mobile/images/'.$image['filename'];
-        $result['url_thumbnail'] = $image['url_thumbnail'];
+        $result['url'] = '../images/'.$image['filename'];
+        $result['url_thumbnail'] = 'mobile/thumbnails/'.$image['filename'];
         $result['filename'] = $image['filename'];
         $result['title'] = $image['title'];
-        $result['description'] = preg_replace('#<br\s*/?>#i', "", $image['description']);
+        $result['description'] = $image['description'];
         $result['subdescription'] = $image['subdescription'];
-		$result['duration'] = $image['duration'];
         return $result;
     }
     return false;
@@ -400,6 +499,17 @@ function album_de($id) {
 }
 
 /**
+ * Elimina una pantalla de la base de datos
+ * @param $code
+ * @return bool|mysqli_result
+ */
+function screen_de($code) {
+    $code = db_escape($code);
+    $q = "DELETE FROM screen WHERE code = '$code'";
+    return db_query($q);
+}
+
+/**
  * Inserta una nueva imagen en la base de datos.
  * @param string $filename El nombre del archivo que contiene la imagen.
  * @param string $url La URL que apunta a la imagen.
@@ -407,28 +517,16 @@ function album_de($id) {
  * @param string $user El email del usuario.
  * @return array|bool Los datos de la imagen o false si ha ocurrido algún error.
  */
-function image_in($filename, $url, $url_thumbnail, $user, $tipo) {
+function image_in($filename, $url, $url_thumbnail, $user) {
     $url = db_escape($url);
     $url_thumbnail = db_escape($url_thumbnail);
     $user = db_escape($user);
-	$tipo = db_escape($tipo);
-    $q = "INSERT INTO image (filename, url, url_thumbnail, user, tipo) VALUES ('$filename', '$url', '$url_thumbnail', '$user', '$tipo')";
+    $q = "INSERT INTO image (filename, url, url_thumbnail, user) VALUES ('$filename', '$url', '$url_thumbnail', '$user')";
     $id = db_in($q);
     if (!$id) return false;
     return image($id);
 }
-function fromtpv_in($url, $user) {
-	$q = "SELECT url FROM image WHERE url = '$url'";
-	
-    if (!$image = db_result($q)){
-		
-    $url = db_escape($url);
-	$q = "INSERT INTO image (filename, url, url_thumbnail, user) VALUES ('$url', '$url', '$url', '$user')";
-    if (!db_in($q)){ return 'error';}else{ return 'insertada';}	
-	}else{
-	return 'no insertada';	
-		}
-}
+
 /**
  * Realiza una consulta en la tabla image_album
  * @param int $imageId Identificador de la imagen.
@@ -449,10 +547,9 @@ function image_album($imageId, $albumId=false, $imageAlbumId=false) {
             $result[$i]['image_id'] = $image['image_id'];
             $result[$i]['image_album_id'] = $image['image_album_id'];
             $result[$i]['title'] = $image['title'];
-            $result[$i]['description'] = preg_replace('#<br\s*/?>#i', "", $image['description']);
-            $result[$i]['subdescription'] = $image['subdescription'];
+            $result[$i]['descripcion'] = $image['descripcion'];
+            $result[$i]['subdescripcion'] = $image['subdescripcion'];
 			$result[$i]['position'] = $image['posicion'];
-			$result[$i]['duration'] = $image['duration'];
             $i++;
         }
         return $result;
@@ -491,19 +588,17 @@ WHERE album_id = '$albumId'";
  * @param string $subdescription La subdescripción de la imagen.
  * @return bool|mysqli_result El resultado de la operación.
  */
-function image_album_up($imageAlbumId, $title, $descripcion, $subdescription, $duration) {
+function image_album_up($imageAlbumId, $title, $descripcion, $subdescription) {
     $imageAlbumId = db_escape($imageAlbumId);
     $title = db_escape($title);
     $descripcion = db_escape($descripcion);
     $subdescription = db_escape($subdescription);
-	$duration = db_escape($duration);
     $q = "
     UPDATE image_album SET
     title = '$title',
     description = '$descripcion',
     subdescription = '$subdescription',
-    update_ts = CURRENT_TIMESTAMP,
-	duration = '$duration'
+    update_ts = CURRENT_TIMESTAMP
     WHERE image_album_id = '$imageAlbumId'
     ";
     return db_query($q);
@@ -542,7 +637,7 @@ function isYours($table, $id, $user, $field=false) {
     $user = db_escape($user);
     $field = db_escape($field);
     if (!$field) $field = $table."_id";
-    $q = "SELECT * FROM $table WHERE $field = '$id' AND (user = '$user' || user='demo@wayhoy.com')";
+    $q = "SELECT * FROM $table WHERE $field = '$id' AND user = '$user'";
     $row = db_result($q);
     return $row !== false;
 }
@@ -553,45 +648,15 @@ function isYours($table, $id, $user, $field=false) {
  * @param string $screenId El código de la pantalla.
  * @return bool El resultado de la operación.
  */
-function sendAlbum($albumId, $screenId, $cambio, $valor) {
+function sendAlbum($albumId, $screenId) {
     $albumId = db_escape($albumId);
     $screenId = db_escape($screenId);
-	$cambio = db_escape($cambio);
-	$valor = db_escape($valor);
-	if ($albumId == '1000'){
-		$campo = 'video';
-		$video = $cambio.':'.$valor;
-	}else if ($albumId == '1001'){
-		$campo = 'font';
-		$video = $valor;
-	}else if ($albumId == '1002'){
-		$campo = 'tpl';
-		$video = $valor;
-	}else if ($albumId == '1003'){
-		$campo = 'fondo';
-		$video = $valor;
-	}else if ($albumId == '1004'){
-		if ($cambio==str_replace('twitter', '', $cambio)){
-			$campo = 'radio';
-		}else{
-			$campo = 'twitter';	
-		}
-		$video = $valor;
-	}else if ($albumId == '1005'){
-		$campo = 'cambio';
-		$video = $valor;
-	}else{ 
-		$campo = 'album_id';
-		$video = $albumId;
-	}
     $q = "
-    INSERT INTO screen_album (screen, album_id, cambio, valor, video, font, tpl, fondo, ts) VALUES
-    ('$screenId', '$albumId', '$cambio', '$valor', '$video', '', '', '', CURRENT_TIMESTAMP)
+    INSERT INTO screen_album (screen, album_id, ts) VALUES
+    ('$screenId', '$albumId', CURRENT_TIMESTAMP)
     ON DUPLICATE KEY UPDATE
-    `".$campo."` = '$video',
-	`cambio` = '$cambio',
-	`valor` = '$valor',
-    `ts` = CURRENT_TIMESTAMP
+    album_id = '$albumId',
+    ts = CURRENT_TIMESTAMP
     ";
     if (!db_query($q)) return false;
 	$q = "SELECT programming_id FROM programming WHERE DAYOFWEEK(NOW()) = day AND CURTIME() BETWEEN start AND end AND pausado = '0' AND screen = '$screenId' ORDER BY start DESC LIMIT 1";
@@ -667,4 +732,16 @@ function setToken($email, $token) {
     ";
     if (db_query($q)) return $token;
     return false;
+}
+
+function update_permissions($email, $new_permissions){
+    $permissions = permissions($email);
+    if(!$permissions) {
+        $q = "INSERT INTO permissions SET user = '$email'";
+        db_in($q);
+    }
+    foreach($new_permissions as $permission) {
+        $q = "UPDATE permissions SET $permission[id] = '$permission[value]'";
+        db_query($q);
+    }
 }

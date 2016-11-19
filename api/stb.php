@@ -16,13 +16,17 @@ if ($method == 'POST') {
         http_response_code(400);
         jsonError();
     }
-	
+
     $idCustomer = $body['idCustomer'];
     $icc = $body['iCC'];
 
     /**
      * 404: no existe el STB
      */
+    if (!user($idCustomer)) {
+        http_response_code(404);
+        jsonError();
+    }
 
     $stb = stb($idCustomer, $icc);
 
@@ -41,7 +45,7 @@ if ($method == 'POST') {
         http_response_code(500);
         jsonError();
     }
-	
+
     jsonSuccess();
 }
 /**

@@ -1,0 +1,42 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h3 class="album-name"><span style="color:#000">Pantalla:</span> {{screen.name}}</h3>
+    <h4>Asignar novo usuario á pantalla</h4>
+    <div class="col-xs-12">
+        <select class="form-control select2" data-ng-model="model.email_user">
+            <option data-ng-repeat="user in model.users" value="{{user.email}}" data-ng-selected="model.user.email == user.email">
+                {{user.name + ' | ' + user.email + ' | ' + user.nif}}
+            </option>
+        </select>
+    </div>
+    <br/><br/><br/><br/>
+    <div class="col-xs-12">
+        <button type="button" class="btn btn-primary btn-block" data-ng-click="assign()">Asignar</button>
+    </div>
+    <br/><br/><br/><br/>
+    <h4>Usuarios asignados á pantalla</h4>
+    <br/>
+    <input type="text" class="form-control" data-ng-model="searchText" placeholder="Filtrar">
+    <br/><br/>
+    <div class="col-xs-12">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="text-center">Usuario</th>
+                <th class="text-center">Visible</th>
+                <th class="text-center">Desasignar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="user in model.assigned_users | filter:searchText">
+                <td class="text-center">{{user.name}}</td>
+                <td class="text-center">
+                    <a href="#" class="btn btn-danger" data-ng-click="visible(user.email)" data-ng-show="user.visible === '0'"><i class="fa fa-times"></i></a>
+                    <a href="#" class="btn btn-success" data-ng-click="invisible(user.email)" data-ng-show="user.visible === '1'"><i class="fa fa-check"></i></a>
+                </td>
+                <td class="text-center"><a href="#" class="btn btn-danger" data-ng-click="unassing(user.email)"><i class="fa fa-times"></i></a> </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

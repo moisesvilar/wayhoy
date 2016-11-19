@@ -1,24 +1,13 @@
 <?php
 require_once("../includes/ini.php");
-if(!isset($_GET['album'])) return false;
+
 $albumId = $_GET['album'];
-if(!isset($_GET['cod'])){
-	http_response_code(404);
-    	exit;
-	}else{
-	$code=db_escape($code);	
-}
 $config = parse_ini_file('../includes/config.ini');
-$q='select code from screen where code="' . $code . '"';
-	if(!$result = db_query($q)){
-		http_response_code(404);
-    	exit;
-	}
+
 $images = images($albumId);
-echo toJson($images);
-exit;
+
 ?>
-<?PHP if (isset($rtrtr)){ ?>
+
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>WayHoy Álbum</title>
@@ -55,4 +44,3 @@ exit;
         ?>
     </channel>
 </rss>
-<?PHP } ?>

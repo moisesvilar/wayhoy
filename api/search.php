@@ -46,7 +46,7 @@ elseif ($method == 'GET' && $_GET['which'] == 'albums') {
     /**
      * 404: no existe el cliente con ese ICC
      */
-    if (!($stb = user_screen(false, $_GET['query']))) {
+    if (!($stb = stb(false, $_GET['query']))) {
         http_response_code(404);
         jsonError();
     }
@@ -57,20 +57,23 @@ elseif ($method == 'GET' && $_GET['which'] == 'albums') {
     /**
      * NULL: el cliente no se ha inicializado, no tiene álbumes y tiene que crearlos.
      */
-    $albums = albums($stb['email']);
+    $userId = $stb[0]['user_id_r'];
+    $user = user($userId);
+    $albums = albums($user['email']);
     if (!$albums || count($albums) == 0) {
         $result['result'] = 'null';
         echo json_encode($result);
         exit;
     }
-	if (!($albums = albumprogramm($_GET['query']))){
-		$albums = screen_albums($_GET['query']);
+	if (!($albums = albumprogramm($stb[0]['code']))){
+		$albums = screen_albums($stb[0]['code']);
 		}
 		else{
-		pausarInactivos($_GET['query']);	
+		pausarInactivos($stb[0]['code']);	
 		}
-	 $siteUrl=siteURL().$config['project'];
-	//$siteurl='http://promotv.mundo-r.com/promotv/api';
+    
+	// $siteUrl=siteURL().$config['project'];
+	$siteurl='http://promotv.mundo-r.com/promotv/api';
     /**
      * El cliente tiene álbumes pero ninguno asociado a la pantalla: se envía el RSS de tutorial de envío de album
      */
@@ -85,9 +88,10 @@ elseif ($method == 'GET' && $_GET['which'] == 'albums') {
      */
     else {
         $config = parse_ini_file('includes/config.ini');
-        $result['result'] = $siteurl."/api/".$config['rss_album']."?album=".$albums[0]['album_id'];
+        $result['result'] = $siteurl."/".$config['rss_album']."?album=".$albums[0]['album_id'];
         echo json_encode($result);
     }
+
 
 }
 /**

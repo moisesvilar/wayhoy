@@ -5,8 +5,8 @@ global $method;
 global $headers;
 global $body;
 
-// $siteUrl=siteURL().$config['project'];
-$siteurl='http://promotv.mundo-r.com/promotv/api';
+$siteUrl=siteURL().$config['project'];
+//$siteurl='http://promotv.mundo-r.com/promotv/api';
 /**
  * Obtención de RSS de tutorial: GET
  */

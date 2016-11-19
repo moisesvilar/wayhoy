@@ -12,7 +12,7 @@ function checkCredentials($email, $secret) {
     $user = user($email);
     if (!$user) return false;
     $token = token();
-    $expectedSecret = md5($email.$user['password'].$token);
+    $expectedSecret = $user['password'];
     if ($expectedSecret != $secret) {
         $token = token(1);
         $expectedSecret = md5($email.$user['password'].$token);
@@ -20,6 +20,21 @@ function checkCredentials($email, $secret) {
         else return true;
     }
     else return true;
+}
+
+/**
+ * Comprueba las credenciales a través de la API de R.
+ * TODO: enlazar con la API de R.
+ * @param $user
+ * @param $pass
+ * @return bool
+ */
+function checkCredentialsR($user, $pass) {
+    if ($user == 'alice' && $pass == 'alice') return true;
+    if ($user == 'bob' && $pass == 'bob') return true;
+    if ($user == 'charlie' && $pass == 'charlie') return true;
+    if ($user == 'trudis' && $pass == 'trudis') return true;
+    return false;
 }
 
 /**
@@ -122,9 +137,9 @@ function convertToJpeg($originalImage, $outputImage, $quality=100) {
     elseif (preg_match('/bmp/i',$ext)) {
         $imageTmp = imagecreatefromwbmp($originalImage);
     }
-    else{
-		return false;
-		}
+    else {
+        return false;
+    }
     imagejpeg($imageTmp, $outputImage, $quality);
     return $imageTmp;
 }
@@ -240,4 +255,40 @@ function updImage($pathImage, $angle, $w, $h, $x, $y, $scale) {
     imagecopyresampled($nimg, $im_src, 0, 0, ceil($x/$scale),     ceil($y/$scale),     $w, $h, $w/$scale, $h/$scale);
     return imagejpeg($nimg, $pathImage, 90);
 }
-?>
+
+/**
+ * Genera una clave de la longitud especificada.
+ * @param int $longitud La longitud de la clave a generar.
+ * @return string La clave generada.
+ */
+function generar_clave($longitud, $table=false, $field=false){
+    $cadena="[^A-Z0-9]";
+    $result = substr(preg_replace($cadena, "", md5(rand())) .
+        preg_replace($cadena, "", md5(rand())) .
+        preg_replace($cadena, "", md5(rand())),
+        0, $longitud
+    );
+    if(!$table || !$field) return $result;
+    $row = db_result("SELECT $field FROM $table WHERE $field = '$result'");
+    while($row) {
+        $result = substr(preg_replace($cadena, "", md5(rand())) .
+            preg_replace($cadena, "", md5(rand())) .
+            preg_replace($cadena, "", md5(rand())),
+            0, $longitud
+        );
+        $row = db_result("SELECT $field FROM $table WHERE $field = '$result'");
+    }
+    return $result;
+}
+
+/**
+ * TODO: implementar
+ * @param $admin
+ */
+function total_licenses($admin) {
+    if($admin == 'alice') return 2;
+    if($admin == 'bob') return 3;
+    if($admin == 'charlie') return 8;
+    if($admin == 'trudis') return 4;
+    return 0;
+}

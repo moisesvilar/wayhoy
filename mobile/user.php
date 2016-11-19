@@ -71,7 +71,14 @@ if ($method == 'POST') {
  */
 elseif ($method == 'PUT') {
 
-    require_once("includes/login.php");
+    print_r($headers);
+
+    $user = user($headers['User']);
+    if($user['password'] != $headers['Secret']) {
+        http_response_code(403);
+        exit;
+    }
+
     /**
      * 400: faltan parámetros obligatorios.
      */

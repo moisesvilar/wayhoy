@@ -1,20 +1,19 @@
 <?php
 require_once("../includes/ini.php");
 require_once("credens.php");
-if (!isset($_GET['hazlo'])){
+if (!$_GET['hazlo']){
 $imageId = db_escape($_GET['image']);
-if (isset($_GET['album'])){
+$albumId = db_escape($_GET['album']);
+if ($_GET['album']){
 	$albumId = db_escape($_GET['album']);
-  	$title = db_escape($_GET['title']);
-  	$description = db_escape($_GET['desc']);
-  	$subdescription = db_escape($_GET['subdesc']);
-	$duration = db_escape($_GET['duration']);
-	
+  $title = db_escape($_GET['title']);
+  $description = db_escape($_GET['desc']);
+  $subdescription = db_escape($_GET['subdesc']);
 $q = "update image_album SET posicion = posicion + 1 
 WHERE album_id = '$albumId'";
 	db_query($q);
 
-  $q = "INSERT INTO image_album (album_id, image_id, update_ts, title, description, subdescription, posicion, duration) VALUES ('$albumId', '$imageId', CURRENT_TIMESTAMP, '$title', '$description', '$subdescription','1', '$duration')";
+  $q = "INSERT INTO image_album (album_id, image_id, update_ts, title, description, subdescription, posicion) VALUES ('$albumId', '$imageId', CURRENT_TIMESTAMP, '$title', '$description', '$subdescription','1')";
   $result = db_in($q);
   $result = str_replace('\n', '', $result);
   $result = str_replace('\r', '', $result);

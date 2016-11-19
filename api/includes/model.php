@@ -120,23 +120,12 @@ function user_screen($user=false, $screen=false) {
     $q = "
     SELECT
     user_screen.screen as code,
-    user_screen.name as name,
-	user_screen.user as email
+    user_screen.name as name
     FROM user_screen
     WHERE 1=1
     ";
     if ($user) $q .= " AND user = '$user'";
     if ($screen) $q .= " AND screen = '$screen'";
-    return db_result($q);
-}
-function checkambio($screen) {
-    $screen = db_escape($screen);
-    $q = "
-    SELECT
-    user_screen.cambio as cambio,
-	user_screen.valor as valor
-    FROM user_screen
-    WHERE screen = '$screen'";
     return db_result($q);
 }
 
@@ -218,7 +207,8 @@ function images($album) {
     $album = db_escape($album);
     $q = "
     SELECT
-    image.*,
+    image.url,
+    image.filename,
     image_album.*
     FROM image
     INNER JOIN image_album ON image_album.image_id = image.image_id
@@ -235,24 +225,16 @@ function images($album) {
         $result[$i]['subdescription'] = $image['subdescription'];
         $result[$i]['filename'] = $image['filename'];
         $result[$i]['url'] = $image['url'];
-		$result[$i]['tipo'] = $image['tipo'];
-		$result[$i]['duration'] = $image['duration'];
         $i++;
     }
     return $result;
 }
-//Comprobamos álbumes y sólo álbumes. Esto viene de search.php donde pide álbumes, 
-//acción que se ejecuta sólo desde el api search222 ya que cualquier otra acción 
-//que se haga ya se ejecuta desde ax.php
 function albumprogramm($stb){
-	$q="SELECT album as album_id FROM programming WHERE DAYOFWEEK(NOW()) = day AND CURTIME() BETWEEN start AND end AND pausado = '0' AND screen = '$stb' AND cambio ='album' ORDER BY start DESC LIMIT 1";
+	$q="SELECT album as album_id FROM programming WHERE DAYOFWEEK(NOW()) = day AND CURTIME() BETWEEN start AND end AND pausado = '0' AND screen = '$stb' ORDER BY start DESC LIMIT 1";
 	return db_result($q, true);
 	}
 function pausarInactivos($stb){
-	// se pausan para que no salgan las programaciones
-	// En pr.php se regularizan los pausados. Si están en el rango y están pausados, quedan como están
-	// Si no están en rango se despausan para que se puedena leer la siguinete vez que estén en el rango.
-	$q="UPDATE programming SET pausado = '1' WHERE screen = '$stb'";
+	$q="UPDATE programming SET pausado = '0' WHERE screen = '$stb'";
 	return db_query($q);
 }
 /**
@@ -507,7 +489,7 @@ function screen_in($code, $icc, $idCustomer) {
     INSERT INTO screen (code, icc, user_id_r) VALUES
     ('$code', '$icc', '$idCustomer')
     ";
-   return db_query($q);
+    return db_query($q);
 }
 
 /**

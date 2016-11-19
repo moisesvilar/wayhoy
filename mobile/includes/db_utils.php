@@ -17,12 +17,6 @@ function db_connect($server=false, $user=false, $pass=false, $db=false) {
         if (!$pass) $pass = $config['pass'];
         if (!$db) $db = $config['db'];
         $connection = mysqli_connect($server, $user, $pass, $db);
-		if(!$connection) {
-			$errno = mysqli_connect_errno();
-			$error = mysqli_connect_error();
-			echo "Error $errno al conectar a la base de datos $bd con los parámetros $server, $user, $pass: $error";
-			die();
-		}
     }
     return $connection;
 }

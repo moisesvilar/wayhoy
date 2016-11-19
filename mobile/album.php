@@ -1,6 +1,5 @@
 <?php
 require_once("includes/ini.php");
-require_once("includes/login.php");
 
 global $method;
 global $headers;
@@ -33,7 +32,7 @@ elseif ($method == 'GET' && isset($_GET['id'])) {
     /**
      * 404: album no encontrador.
      */
-    if (($album = album($id)) === false) {
+    if (($album = album($id, $user)) === false) {
         http_response_code(404);
         exit;
     }

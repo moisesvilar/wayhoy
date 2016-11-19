@@ -1,0 +1,38 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="submit()">
+        <h1>introduce o código que se pode ver na pantalla</h1>
+        <div class="form-group">
+            <label for="code">código</label>
+            <span class="label label-danger" data-ng-show="model.errorCode">{{model.errorCode}}</span>
+            <input type="text" class="form-control" id="code" data-ng-model="model.code" placeholder="código da pantalla" required>
+        </div>
+        <h1>crea a túa conta cos seguintes datos</h1>
+        <div class="form-group">
+            <label for="email">email</label>
+            <span class="label label-danger" data-ng-show="model.errorEmail">{{model.errorEmail}}</span>
+            <input type="email" class="form-control" id="email" data-ng-model="model.email" placeholder="dirección email" required>
+        </div>
+        <div class="form-group">
+            <label for="repeat-email">repite email</label>
+            <span class="label label-danger" data-ng-show="model.errorRepeatEmail">{{model.errorRepeatEmail}}</span>
+            <input type="email" class="form-control" id="repeat-email" data-ng-model="model.repeatEmail" placeholder="dirección email" required>
+        </div>
+        <div class="form-group">
+            <label for="password">contrasinal</label>
+            <span class="label label-danger" data-ng-show="model.errorPassword">{{model.errorPassword}}</span>
+            <input type="password" class="form-control" id="password" data-ng-model="model.password" placeholder="contrasinal mínimo 6 caracteres" required>
+        </div>
+        <div class="form-group">
+            <label for="repeat-password">repite contrasinal</label>
+            <span class="label label-danger" data-ng-show="model.errorRepeatPassword">{{model.errorRepeatPassword}}</span>
+            <input type="password" class="form-control" id="repeat-password" data-ng-model="model.repeatPassword" placeholder="contrasinal mínimo 6 caracteres" required>
+        </div>
+        <div class="checkbox">
+                                <label for="conds">
+                                    <input type="checkbox" required id="conds"><span style="color:#000">acepto os <a href="legal">términos de uso</a></span>
+                                </label>
+                            </div>
+        <button type="submit" class="btn btn-success btn-block">enviar</button>
+    </form>
+</div>

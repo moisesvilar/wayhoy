@@ -10,9 +10,11 @@ $user = $headers['User'];
 $secret = $headers['Secret'];
 
 if (!checkCredentials($user, $secret)) {
-    http_response_code(403);
-    exit;
+    if(!checkCredentialsR($user, $secret)) {
+        http_response_code(403);
+        exit;
+    }
+    else {
+        echo json_encode(array('is_admin' => true));
+    }
 }
-
-
-?>

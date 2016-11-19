@@ -1,0 +1,123 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+   <h3 class="album-name"><span style="color:#000">álbum:</span> {{album.name}}</h3>
+    <div class="row">
+        <div class="col-xs-12">
+            <a data-ng-href="album/{{album.id}}/" id="iralbum"></a>
+
+            <h4>
+                <a data-ng-href="album/{{album.id}}/send" class="thumbnail btn btn-success">
+                    <i class="fa fa-eye"></i> Mostrar en TV
+                </a>
+            </h4>
+
+            <h4>
+                <a data-ng-href="programming/new" class="thumbnail btn">
+                    <i class="fa fa-clock-o"></i> Programar
+                </a>
+            </h4>
+
+            <h4>
+                <a data-ng-href="edit-album/{{album.id}}" class="thumbnail btn" data-ng-show="canEditAlbum()">
+                    <i class="fa fa-pencil"></i> modificar
+                </a>
+            </h4>
+
+            <h4>
+                <a data-ng-href="album-users/{{album.id}}" class="thumbnail btn" data-ng-show="isAdmin()">
+                    <i class="fa fa-users"></i> Usuarios
+                </a>
+            </h4>
+
+            <button class="btn btn-danger btn-block thumbnail" data-toggle="modal" data-target="#myModal" data-ng-show="canEditAlbum()">
+                <i class="fa fa-times"></i> eliminar
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <a data-ng-href="album/{{album.id}}/upload" class="thumbnail" data-ng-show="canUploadImages()">
+                <img src="img/plus.png">
+            </a>
+        </div>
+        <div class="col-xs-4" data-ng-repeat="image in album.images">
+            <a href="#" class="thumbnail" data-ng-click="setImage(image)" data-toggle="modal" data-target="#myModal1">
+                <img data-ng-src="{{image.url_thumbnail}}">
+            </a>
+            {{image.position}}
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">preview imaxe</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" data-ng-show="image">
+                    <div class="col-xs-12">
+                        <img class="img-responsive" width="100%" height="100%" data-ng-src="{{image.url}}?temp=uit">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            	 <div class="col-xs-12" data-ng-show="permission('albums') &&  canEditAlbum()">
+                 posición
+                       <select data-ng-change="cambiarPosicion(image.id, album.id)" data-ng-model="model.position" class="form-control">
+  <option data-ng-repeat="posImagenActual in obtenerPosicionesDisponibles()" value="{{posImagenActual}}" data-ng-selected="posImagenActual == image.position">{{posImagenActual}}</option>
+</select>
+                    </div>
+                    <div style="clear:both"></div>
+                    <div>
+            	<a data-ng-href="album/{{album.id}}/image/{{image.id}}/" class="btn btn-success btn-block" data-ng-show="canEditAlbum()">
+                	<i class="fa fa-eye"></i> ver/editar
+            	</a>
+                <a data-ng-href="album/{{album.id}}/image/{{image.id}}/duplica/" class="btn btn-info btn-block" data-ng-show="permission('link_images') && canEditAlbum()">
+                    <i class="fa fa-plus-square"></i> duplicar
+                </a>
+                <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModaldesasoc"
+                        data-dismiss="modal" data-ng-show="permission('link_images') && canEditAlbum()">
+                    <i class="fa fa-times"></i> sacar do álbum
+                </button>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">eliminar álbum</br>{{album.name}}<h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+        Con esta acción eliminarás este álbum
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove();">ok</button>
+      </div>
+    </div>
+  </div>
+  </div>
+<div class="modal fade" id="myModaldesasoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabeldesasoc">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">eliminar imaxe do álbum</h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+        Con esta acción descartas a imaxe do álbum <br>{{album.name}}<br>Continuará na galería de imaxes
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeFrAl(image.id);">ok</button>
+      </div>
+    </div>
+  </div>
+</div>

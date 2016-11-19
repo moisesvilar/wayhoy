@@ -1,0 +1,34 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">as miñas pantallas</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="text" class="form-control" data-ng-model="searchText" placeholder="Filtrar">
+        </div>
+        <br/><br/><br/><br/>
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <a data-ng-href="screen/{{screen.code}}" data-ng-repeat="screen in model.screens | filter: searchText" class="btn btn-default btn-block">
+                    Nome: {{screen.name}} <br/>
+                    Código: {{screen.code}} <br/>
+                    <span style="color:green">modifica</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="alert alert-warning" data-ng-show="freeLicenses() <= 0">
+        <strong>Non ten licencias libres</strong><br/>
+        Para poder crear unha nova pantalla, ten que eliminar unha das existentes ou ben poñerse en contacto con R
+        para ampliar o número de licensias do seu contrato.
+    </div>
+    <div class="row" data-ng-show="freeLicenses() > 0">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <a data-ng-href="screen/new" class="btn btn-success btn-block">
+                    engadir nova
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

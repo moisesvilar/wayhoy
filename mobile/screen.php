@@ -1,6 +1,5 @@
 <?php
 require_once("includes/ini.php");
-require_once("includes/login.php");
 
 global $method;
 global $headers;
@@ -31,10 +30,28 @@ elseif ($method == 'GET' && isset($_GET['code'])) {
     }
     echo toJson($screen);
 }
+elseif($method == 'POST' && $body['isAdmin']) {
+    $code = generar_clave(6, 'screen', 'code');
+    $icc = generar_clave(6, 'screen', 'icc');
+    $q = "
+    INSERT INTO screen SET
+    code = '$code',
+    icc = '$icc',
+    user = '$user',
+    name = '$body[name]'
+    ";
+    if(!db_query($q)) {
+        http_response_code(500);
+        exit;
+    }
+    $screen = screen($code);
+    echo toJson($screen);
+    exit;
+}
 /**
  * Añadir un STB a la cuenta del usuario.
  */
-elseif($method == 'POST') {
+elseif($method == 'POST' && !$body['isAdmin']) {
     /**
      * 400: faltan parámetros obligatorios.
      */
@@ -48,11 +65,11 @@ elseif($method == 'POST') {
     /**
      * 404: el STB no existe
      */
-    if (!$user_r=screen($code)) {
+    if (!screen($code)) {
         http_response_code(404);
         exit;
     }
-	
+
     $name = $body['name'];
 
     /**
@@ -62,14 +79,30 @@ elseif($method == 'POST') {
         http_response_code(500);
         exit;
     }
-	
+
     $screen = user_screen($user, $code);
     echo toJson($screen);
+}
+elseif($method == 'PUT'&& $body['isAdmin']) {
+    $q = "
+    UPDATE screen SET
+    name = '$body[name]',
+    licensed = '$body[licensed]',
+    code = '$body[newcode]'
+    WHERE code = '$body[code]'
+    ";
+    if(!db_query($q)) {
+        http_response_code(500);
+        exit;
+    }
+    $screen = screen($body['newcode']);
+    echo toJson($screen);
+    exit;
 }
 /**
  * Actualizar los datos de un STB
  */
-elseif($method == 'PUT') {
+elseif($method == 'PUT'&& !$body['isAdmin']) {
     /**
      * 400: faltan parámetros obligatorios.
      */
@@ -109,5 +142,32 @@ elseif($method == 'PUT') {
     $screen = user_screen($user, $code);
     echo toJson($screen);
 }
+elseif ($method == 'DELETE') {
 
+    /**
+     * 400: faltan parámetros obligatorios.
+     */
+    if (!isset($_GET['code']) || !$_GET['code']) {
+        http_response_code(400);
+        exit;
+    }
+
+    $code = $_GET['code'];
+
+    /**
+     * 404: el album no existe
+     */
+    if (!screen($code)) {
+        http_response_code(404);
+        exit;
+    }
+
+    /**
+     * 500: error al elimnar el album
+     */
+    if (!screen_de($code)) {
+        http_response_code(500);
+        exit;
+    }
+}
 ?>

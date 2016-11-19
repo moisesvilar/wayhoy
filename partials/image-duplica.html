@@ -1,0 +1,41 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div data-ng-hide="show">
+            <h1>datos da imaxe</h1>
+            <div class="media">
+                        <img class="media-object" data-ng-src="{{image.url_thumbnail}}" alt="{{image.title}}">
+                <div class="media-body">
+                    <h4 class="media-heading">álbum: {{album.name}}</h4>
+                    deixa o título en branco para que saisa só a imaxe <br />
+                     <i class="fa fa-plus" style="color:#666;font-size:8px"> clic para ampliar</i>
+                </div>
+            </div>
+            <hr/>
+            <div class="form-group">
+                <label for="title">título</label>
+                <input type="text" class="form-control" id="title" data-ng-model="model.title" placeholder="título da imaxe" maxlength="40">
+            </div>
+            <div class="form-group">
+                <label for="description">descrición</label>
+                <input type="text" class="form-control" id="description" data-ng-model="model.description" placeholder="descrición da imaxe" maxlength="180">
+            </div>
+            <div class="form-group">
+                <label for="subdescription">subdescrición</label>
+                <input type="text" class="form-control" id="subdescription" data-ng-model="model.subdescription" placeholder="subdescrición da imaxe" maxlength="25">
+            </div>
+            <span class="label label-success" data-ng-show="model.success">datos actualizados</span>
+            
+       <i style="float:left"> duplicar no álbum...  </i>   <br /> 
+  			<label data-ng-repeat="album in myAlbums()" style="padding:2px;margin:2px;float:left"><br />
+    		<input type="radio" name="opt" value="{{album.id}}" data-ng-click="quealbum(album.id)" id="{{album.id}}" value="{{album.id}}" style="float:left">
+    		<i class="fa" style="float:left"></i>{{album.name}}
+            <br />
+  			</label>     
+               <button class="btn btn-info btn-block" data-ng-show="album" data-ng-click="duplica(image.id, model.title, model.description, model.subdescription)">
+            <i class="fa fa-plus-square"></i> duplicar
+        </button>
+<script>
+$('#myModal1').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+</script>

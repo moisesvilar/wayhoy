@@ -1,6 +1,5 @@
 <?php
 require_once("includes/ini.php");
-require_once("includes/login.php");
 
 global $method;
 global $headers;
@@ -19,8 +18,6 @@ if ($method == 'POST') {
     }
 
     $album = $body['album'];
-	$cambio = $body['cambio'];
-	$valor = $body['valor'];
     /**
      * 404: el álbum no existe
      */
@@ -57,7 +54,7 @@ if ($method == 'POST') {
     /**
      * 500: error al enviar el módulo
      */
-    if(!sendAlbum($album, $screen, $cambio, $valor)) {
+    if(!sendAlbum($album, $screen)) {
         http_response_code(500);
         exit;
     }

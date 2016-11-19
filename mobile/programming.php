@@ -1,6 +1,5 @@
 <?php
 require_once("includes/ini.php");
-require_once("includes/login.php");
 
 global $method;
 global $headers;
@@ -9,15 +8,14 @@ global $body;
 $user = $headers['User'];
 
 /**
- * POST: creación de programaciones
+ * POST: creacion de programaciones
  */
 if($method == 'POST') {
 	$days = $body['days'];
 	$times = $body['times'];
 	$screen = $body['screen'];
 	$album = $body['album'];
-	$cambio = $body['cambio'];
-	$valor = $body['valor'];
+	
 	$error = false;
 	foreach($days as $day) {
 		$idDay = $day['id'];
@@ -30,18 +28,14 @@ if($method == 'POST') {
 			day,
 			start,
 			end,
-			album, 
-			cambio, 
-			valor
+			album
 			)
 			VALUES (
 			'$screen',
 			'$idDay',
 			'$start',
 			'$end',
-			'$album', 
-			'$cambio', 
-			'$valor'
+			'$album'
 			)
 			";
 			if (!db_in($q)) $error = true;
@@ -49,19 +43,26 @@ if($method == 'POST') {
 	}
 	
 	if ($error) echo json_encode(array("msg" => "Ha ocurrido un error"));
-	else  echo json_encode(array("msg" => "Programación creada"));
+	else  echo json_encode(array("msg" => "Programaciï¿½n creada"));
 	
 }
 /**
- * GET: obtención de programaciones
+ * GET: obtencion de programaciones
  */
 elseif($method == 'GET') {
-    $q = "SELECT * FROM programming WHERE album IN (SELECT album_id FROM album WHERE user = '$user' || user='admin@wayhoy.com') ORDER BY screen,start";
+    $q = "
+    SELECT * FROM programming WHERE
+    (
+      album IN (SELECT album_id FROM album WHERE user = '$user') OR
+      album IN (SELECT album_id FROM album_user WHERE user = '$user')
+   )
+    ORDER BY screen,start
+    ";
     $programaciones = db_result($q, true);
     echo json_encode($programaciones);
 }
 /**
- * DELETE: eliminación de programaciones
+ * DELETE: eliminacion de programaciones
  */
 elseif ($method == 'DELETE') {
     $id = $_GET['id'];
@@ -69,7 +70,7 @@ elseif ($method == 'DELETE') {
     db_query($q);
 }
 /**
- * PUT: actualización de programaciones
+ * PUT: actualizacion de programaciones
  */
 elseif($method == 'PUT') {
     $id = $body['id'];
@@ -81,8 +82,7 @@ elseif($method == 'PUT') {
     $times = $body['times'];
     $screen = $body['screen'];
     $album = $body['album'];
-	$cambio = $body['cambio'];
-	$valor = $body['valor'];
+
     $error = false;
     foreach($days as $day) {
         $idDay = $day['id'];
@@ -97,18 +97,14 @@ elseif($method == 'PUT') {
 			day,
 			start,
 			end,
-			album, 
-			cambio, 
-			valor
+			album
 			)
 			VALUES (
 			'$screen',
 			'$idDay',
 			'$start',
 			'$end',
-			'$album', 
-			'$cambio', 
-			'$valor'
+			'$album'
 			)
 			";
             if (!db_in($q)) $error = true;
@@ -116,5 +112,5 @@ elseif($method == 'PUT') {
     }
 
     if ($error) echo json_encode(array("msg" => "Ha ocurrido un error"));
-    else  echo json_encode(array("msg" => "Programación actualizada"));
+    else  echo json_encode(array("msg" => "Programaciï¿½n actualizada"));
 }
