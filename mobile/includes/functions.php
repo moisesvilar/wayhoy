@@ -229,6 +229,7 @@ function sendEmail($conf) {
  * @param $x
  * @param $y
  * @param $scale
+ * @return bool
  */
 function updImage($pathImage, $angle, $w, $h, $x, $y, $scale) {
     $nimg = imagecreatetruecolor($w,$h);
@@ -240,4 +241,45 @@ function updImage($pathImage, $angle, $w, $h, $x, $y, $scale) {
     imagecopyresampled($nimg, $im_src, 0, 0, ceil($x/$scale),     ceil($y/$scale),     $w, $h, $w/$scale, $h/$scale);
     return imagejpeg($nimg, $pathImage, 90);
 }
-?>
+
+/**
+ * TODO: implementar
+ * @param $admin
+ * @return int
+ */
+function total_licenses($admin) {
+    if($admin == 'alice') return 2;
+    if($admin == 'bob') return 3;
+    if($admin == 'charlie') return 8;
+    if($admin == 'trudis') return 4;
+    return 0;
+}
+
+/**
+ * Comprueba las credenciales a través de la API de R.
+ * TODO: enlazar con la API de R.
+ * @param $user
+ * @param $pass
+ * @return bool
+ */
+function checkCredentialsR($user, $pass) {
+    if ($user == 'alice@alice.com' && $pass == 'alice') return true;
+    if ($user == 'bob@bob.com' && $pass == 'bob') return true;
+    if ($user == 'charlie@charlie.com' && $pass == 'charlie') return true;
+    if ($user == 'trudis@trudis.com' && $pass == 'trudis') return true;
+    return false;
+}
+
+/**
+ * Genera una clave de la longitud especificada.
+ * @param int $longitud La longitud de la clave a generar.
+ * @return string La clave generada.
+ */
+function generar_clave($longitud){
+    $cadena="[^A-Z0-9]";
+    return substr(preg_replace($cadena, "", md5(rand())) .
+        preg_replace($cadena, "", md5(rand())) .
+        preg_replace($cadena, "", md5(rand())),
+        0, $longitud
+    );
+}

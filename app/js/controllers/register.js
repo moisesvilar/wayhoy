@@ -36,7 +36,7 @@ angular.module('angularApp').controller('RegisterController', [
 
             UserService.save({
                 user: $scope.model.email,
-                password: md5.createHash($scope.model.password),
+                password: $scope.model.password, //md5.createHash($scope.model.password),
                 screen: $scope.model.code
             }, function(data) {
                 store.set(USER, data.user);

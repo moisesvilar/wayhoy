@@ -23,11 +23,11 @@ angular.module('angularApp').factory('LoginService', [
                 }
                 var token = json.token;
                 store.set(TOKEN, token);
-                store.set(REMEMBER, remember);
-                store.set(USER, email);
-                cookie.set(USER, email);
-                store.set(PASSWORD, password);
-                cookie.set(PASSWORD, password);
+                if(remember) store.set(REMEMBER, remember);
+                if(email) store.set(USER, email);
+                if(email) cookie.set(USER, email);
+                if(password) store.set(PASSWORD, password);
+                if(password) cookie.set(PASSWORD, password);
                 $http.get(URL, {handleError: true}).
                     success(function (data, status) {
                         callback(null, data);

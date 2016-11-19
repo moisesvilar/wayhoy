@@ -30,11 +30,12 @@ angular.module('angularApp').controller('ProfileController', [
 
             TokenService.get(function(json) {
                 store.set(TOKEN, json.token);
-                store.set(PASSWORD, md5.createHash(oldPassword));
+                //store.set(PASSWORD, md5.createHash(oldPassword));
+                store.set(PASSWORD, oldPassword);
                 UserService.update({
-                    password: md5.createHash(newPassword)
+                    password: newPassword //md5.createHash(newPassword)
                 }, function(data) {
-                    store.set(PASSWORD, md5.createHash(newPassword));
+                    store.set(PASSWORD, newPassword /*md5.createHash(newPassword)*/);
                     $scope.model.success = true;
                 }, function(err) {
                     handleError(err.status);

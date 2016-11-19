@@ -1,0 +1,25 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="update()">
+        <div class="form-group">
+            <label for="name">Nome ou razón social</label>
+            <input type="text" class="form-control" id="name" data-ng-model="model.name" placeholder="Nome ou razón social" required>
+        </div>
+        <div class="form-group">
+            <label for="name">email</label>
+            <input type="email" class="form-control" id="email" data-ng-model="model.email" placeholder="email" disabled readonly>
+        </div>
+        <div class="form-group">
+            <label for="nif">email</label>
+            <input type="text" class="form-control" id="nif" data-ng-model="model.nif" placeholder="NIF ou DNI" required>
+        </div>
+        <div class="form-group thumbnail" data-ng-show="user">
+            <label for="permissions">Permisos</label>
+            <div id="permissions" data-ng-repeat="permission in user.permissions">
+                <button id="{{permission.id}}" type="button" data-ng-class="permission.value == '1' ? 'btn-danger' : 'btn-default'" class="button-checkbox btn btn-block" data-ng-click="togglePermission(permission)">{{permission.name}}</button>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">gardar</button><br/><br/>
+        <button type="button" class="btn btn-danger btn-block" data-ng-click="remove()">desactivar</button>
+    </form>
+</div>
