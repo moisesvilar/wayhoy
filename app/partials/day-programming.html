@@ -1,0 +1,48 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">{{model.day.name}}</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <a data-ng-href="programming" class="btn btn-warning btn-block fa fa-clock-o">
+                    Programacións
+                </a><br>
+                <a data-ng-href="programming/new/{{model.day.id}}" class="btn btn-success btn-block fa fa-plus">
+                    nova programación para os {{model.day.name}}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <h5>pulsa sobre algunha delas para editar os datos:</h5>
+    <div class="list-group">
+        <a href="programming/{{model.day.id}}/{{programming.programming_id}}" class="list-group-item" data-ng-repeat="programming in getProgrammings(model.day.id)">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>Inicio</h4>
+                    <p>{{programming.start}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <h4>Fin</h4>
+                    <p>{{programming.end}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <h4>Álbum</h4>
+                    <p>{{getAlbum(programming.album).name}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <h4>Pantalla</h4>
+                    <p>{{getScreen(programming.screen).name}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <h4>acción</h4>
+                    <p>{{programming.cambio}}</p>
+                </div>
+                <div class="col-xs-6">
+                    <h4>Valor</h4>
+                    <p>{{programming.valor}}</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

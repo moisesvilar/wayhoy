@@ -1,0 +1,228 @@
+<style>
+#busca{display:none;padding:20px}
+</style>
+<h1 style="margin:20px"> be DJ !</h1>
+<h2 style="margin:20px; color:#2AABD2"> Gramola TV </h2>
+<div id="busca">
+<input placeholder="Buscar en Youtube..."  type="text" id="ytSearchField" value="" style="height:40px" class="col-xs-12">
+<button class="col-xs-12 btn btn-info glyphicon glyphicon-search" onclick="lista()"></button>
+<button style="display:none" id="modalbutton" data-toggle="modal" data-target="#myModaldesasoc" aria-label="Close">
+</div> 
+<div id="content"></div>
+<div class="modal fade ng-scope" id="myModaldesasoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabeldesasoc" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" id="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Enviar vídeo a la pantalla</h4>
+      </div>
+      <div class="modal-body ng-binding" id="mod-body">
+      </div>
+      <div class="modal-footer" id="footer">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+
+</div>
+<script>
+//cancelled = cancelleddddrrrxprj4567
+		//aproved = aproveddddrrrxprj4568
+		var codigopan;
+		var code;
+		var urlapi = apoint + 'luk/';
+		urlapi =urlapi.replace('mobile', 'api');
+			function bienv(cod) {
+				if (cod != null && cod != 'undefined') {
+					code = cod;
+				} else {
+					code = '';
+				}
+				$('#content').html('');
+				$('#content').append('<label for="cod" style="margin:20px">Introduce el código que ves en la pantalla</label>');
+				$('#content').append('<input placeholder="Código" name="cod" id="cod" value="' + code + '" type="tel"  autocapitalize="off" autocomplete="on" style="margin:20px;height:40px" class="col-xs-10" />');
+				$('#content').append('<button class="col-xs-10 btn btn-info glyphicon glyphicon-ok-sign" id="submit" style="color:#d30404;margin:20px" onclick="valida()">Acceder</button>');
+			}
+
+			function creabutton() {
+				$('#content').append('<button style="margin:20px" class="btn btn-success" id="volver" onclick="bienv(\'' + code + '\')">Volver</button>');
+			}
+			function envia(video) {
+				if(localStorage.getItem('cant')>-2000){
+					localStorage.setItem('cant', localStorage.getItem('cant')-1);
+				$.ajax({
+					url : urlapi + 'apienvia.php',
+					type : 'post',
+					data : {
+						'cod' : code,
+						'video' : video
+					},
+					success : function(data) {
+						if (data == 'ok') {
+							$('#busca').hide();
+							$('#content').html('');
+							$('#content').append('<h1 style="margin:20px">Tu vídeo ha sido insertado con éxito<br><br>Aparecerá en la lista cuando acabe el vídeo actual</h1>');
+							creabutton(code);
+						} else {
+							$('#content').html(data);
+							creabutton();
+						}
+					},
+					error : function() {
+						$('#content').html('<h1 style="margin:20px">Ha habido algún error al validar el código</h1>');
+						creabutton();
+					}
+				})
+				}else{
+				$('#fancymain').html('<h3 style="margin:20px">ya no te quedan accesos</h3>Compra tus accesos<br>1 acceso 1 €<br>2 accesos 1,75 €<br>3 accesos 2 €<br><form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_s-xclick"><input type="hidden" name="hosted_button_id" value="XYQF5MRUG98YE"><table><tr><td><input type="hidden" name="on0" value="accesos">accesos</td></tr><tr><td><select name="os0"><option value="1 acceso">1 acceso €0,01 EUR</option><option value="2 accesos">2 accesos €1,75 EUR</option><option value="3 accesos">3 accesos €2,00 EUR</option></select> </td></tr></table><input type="hidden" name="business" value="autonotel-facilitator-1@gmail.com"><input type="hidden" name="currency_code" value="EUR"><input type="image" src="https://www.paypalobjects.com/es_ES/ES/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal. La forma rápida y segura de pagar en Internet."><img alt="" border="0" src="https://www.paypalobjects.com/es_ES/i/scr/pixel.gif" width="1" height="1"></form> ');
+				}
+			}
+			var a='b';
+			
+			function lista() {
+				$('#content').html('<span class="span">Buscando ...</span>');
+				var q = $('#ytSearchField').val();
+				if (q==''){
+				$('#content').html('Búsqueda vacía...');
+				}else{
+				q=q+' vevo';
+				var results = '';
+				var uri = urlapi + 'apiyout.php?cod='+code+'&q='+q
+				$.getJSON(uri,function(datas){
+					$.each(datas.items, function(y, itemss) {
+						str=this.snippet.title;
+						title = str.replace("\""," ");
+						title = title.replace("'"," ");
+						title = title.replace('\"', " ");
+						title=title.replace("/", " ");
+						title=title.replace("(", " ");
+						title=title.replace(")", " ");
+						str2=this.snippet.description;
+						description = str2.replace("\""," ");
+						description = description.replace("'"," ");
+						description = description.replace('\"', " ");
+						description=description.replace('\"', " ");
+						description=description.replace("(", " ");
+						description=description.replace(")", " ");							
+							if (this.id.videoId){
+   $('#content').append('<img style="float:left;margin:20px" class="fancybox" onclick="listayout(\''+this.id.videoId+'\')" href="#fancy" src="'+this.snippet.thumbnails.default.url+'"><br>'+title+'<br>'+description+'<div style="clear:both"></style><hr>');
+							}
+					})				
+				})
+			}				
+		}
+	function sigue(){
+		$('.span').hide();
+		}
+			function listayout(vid) {
+				var uri = urlapi + 'apiyout.php?q='+vid+'&cod='+code+'&kind=1';
+				$('#fancymain').html('<div style="width:600px;height:600px">Loading...</div>');
+				$.getJSON(uri, function(data) {	
+				var playlistItems = data.items;		
+						$.each(playlistItems, function(index, item) {
+						var durations = this.contentDetails.duration;
+						var durations = durations.substring(durations.lastIndexOf("PT") + 2, durations.lastIndexOf("M"));
+						var title = this.snippet.title;
+						title = title.replace(')', ' - ');	
+						title = title.replace(';', ' - ');	
+						title = title.replace(',', ' - ');
+						title = title.replace(':', ' - ');
+						title = title.replace('.', ' - ');
+						title = title.replace('/', ' - ');
+						title = title.replace('(', ' - ');
+						title= title.replace(/["']/g, "")
+						title = title.replace(/\r?\n/g, " - ");
+						var description = this.snippet.description;
+						description = description.replace(')', ' - ');	
+						description = description.replace(';', ' - ');	
+						description= description.replace(',', ' - ');
+						description= description.replace(':', ' - ');
+						description= description.replace('.', ' - ');
+						description= description.replace('/', ' - ');
+						description= description.replace(/["']/g, "")
+						description= description.replace('(', ' - ');
+						description= description.replace(/\r?\n/g, " - ");
+						description= description.substring(0, 140);
+						description= description+'...';
+						var thumb = this.snippet.thumbnails.medium.url;
+						var thumbb = this.snippet.thumbnails.default.url;
+						if (durations < 6) {
+							
+							llenafancy(title,thumb,description,code,this.id);
+							
+						}else{
+							llenafancy("<span style='color:red'>Este vídeo es de larga duración</span><br>No se puede elegir","","No se puede elegir este vídeo","","")
+							}
+					})
+				})
+			}
+			
+			function albums() {
+			$('#busca').show();
+			$('#content').html('');
+			}
+
+			function valida() {
+				code = $('#cod').val();
+				if (code == '' || !code) {
+					alert('debes introducir un código');
+				} else {
+					$.ajax({
+						url : urlapi + 'apivalida.php',
+						type : 'POST',
+						data : {
+							'cod' : code
+						},
+						success : function(data) {
+							if (data == 'ok') {
+								albums();
+							} else {
+								$('#content').html(data);
+								creabutton();
+							}
+						},
+						error : function() {
+							$('#content').html('<h1>Ha habido algún error al validar el código</h1>');
+							creabutton();
+						}
+					})
+				}
+			}
+
+			function volver() {
+				
+				valida(code);
+				
+			}
+
+
+			$(document).ready(function() {
+				bienv();
+			})
+			function llenafancy(videotit, videothumb, videodescr, code, videoid){
+				$('#footer').html('');
+				$('#modalbutton').click();
+				$('#modbody').html('Loading...');
+				$('#modal-header').html('<h3>' + videotit + '</h3>');
+				if (videothumb && videothumb!=''){
+				$('#mod-body').html('<img style="float:left;width:35%;margin:10px" src="' + videothumb + '" width=50%>');
+				}
+				$('#mod-body').append('' + videodescr + '');
+				if (videothumb && videothumb!=''){
+				$('#footer').html('<button class="btn btn-success" onclick="envia(\'' + videoid + '\');cierra();">enviar</button>');               
+				}
+			}
+                 function cierra(){
+					  var myModal = $('#myModaldesasoc');
+            myModal.modal('hide');
+					 }                                          
+		</script>
+        <script>
+            (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+             (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+             
+             ga('create', 'UA-65651213-1', 'auto');
+             ga('send', 'pageview');
+</script>

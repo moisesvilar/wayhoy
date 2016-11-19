@@ -1,0 +1,19 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">escolle un álbum</h1>
+    <alert data-ng-show="model.albums.length == 0" type="info"><strong>aínda non tes álbums!</strong> crea o primeiro en "os meus álbums"</alert>
+
+    <div class="row">
+        <div class="col-xs-4" data-ng-repeat="album in model.albums">
+                 <a data-ng-href="#" data-ng-click="addimagen(image.id, album.id)" class="thumbnail" >
+                <img data-ng-src="{{(album.images && album.images[0]) ? album.images[0].url_thumbnail : 'img/picture.png'}}">
+                <small>{{album.name}}</small>
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+$('#myModal1').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+</script>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html data-ng-app="angularApp">
+    <head>
+        <link rel="manifest" href="manifest.json">
+		<meta name="viewport" content="width=device-width" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="apple-touch-icon" href="promotv144.png" />
+		<link rel="icon" href="promotv144.png">
+		<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor/bootstrap/bootstrap-theme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor/boostratp-switch/bootstrap-switch.min.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="css/vendor/jquery-guillotine/jquery-guillotine.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+  <style>
+.col-xs-4{
+	padding:1px;
+	margin:0px
+	}
+	.col-xs-6{
+	padding:1px;
+	margin:0px
+	}
+	.thumbnail{padding:1px;
+	margin:1px;
+	max-height:99%;
+	}
+    </style>
+        <title>promo tv</title>
+
+    </head>
+    <body data-ng-controller="MainController">
+    <div id="overhidden"><div id="alertas"></div>
+    <nav class="navbar navbar-inverse navbar-static" data-ng-controller="LoginController">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href data-ng-hide="$parent.location.path() == '/'" class="navbar-brand" id ="backbutt" style="color: #0A95AE;" back-button><button type="button" class="btn btn-block btn-info"><<</button></a>
+                    <button id="collaps" type="button" class="navbar-toggle" data-ng-click="model.collapsed = !model.collapsed">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand red glyphicon glyphicon-home" href="home"><img src="img/logonegroazul.png" style="float:left;width:40%"> <span style="font-size:9px">v.1.1 (Beta)</span></a>
+                </div>
+                <div class="bs-js-navbar-collapse navbar-collapse" data-collapse="model.collapsed">
+                    <div data-ng-hide="model.isLogin">
+                        <ul class="nav navbar-nav">
+                            <li><a href="register" data-ng-click="model.collapsed = true">REGISTRO</a></li>
+                        </ul>
+                        <form class="navbar-form navbar-left" role="form" data-ng-submit="login()">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="Email" data-ng-model="model.email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Contrasinal" data-ng-model="model.password" required>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" data-ng-model="model.remember"> recordar siempre
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-default">acceder</button>
+                        </form>
+                        <ul class="nav navbar-nav">
+                            <li><a href="recovery" data-ng-click="model.collapsed = true">recuperar password</a></li>
+                        </ul>
+                    </div>
+                    <div data-ng-show="model.isLogin">
+                        <ul class="nav navbar-nav">
+                            <li><a href="album" data-ng-click="model.collapsed = true">contenidos</a></li>
+                            <li><a href="gallery" data-ng-click="model.collapsed = true">mi galería</a></li>
+                            <li><a href="galleryr/1" data-ng-click="model.collapsed = true">galería W<span style="font-style:italic">!</span></a></li>
+                            <li><a href="screen" data-ng-click="model.collapsed = true">mis pantallas</a></li>
+                            <li><a href="programming" data-ng-click="model.collapsed = true">mis programaciones</a></li>
+                            <li><a href="gramola" data-ng-click="model.collapsed = true">be DJ !</a></li>
+                            <li><a href="home" data-ng-click="closeSession()">salir</a></li>
+                            <li><a href="profile" data-ng-click="model.collapsed = true">cuenta</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </nav>
+        <div data-ng-view></div>
+        <footer></footer>
+
+        <script src="js/vendor/jquery/jquery-1.11.3.min.js"></script>
+        <script src="js/vendor/angular/angular.js"></script>
+        <script src="js/vendor/angular/angular-route.min.js"></script>
+        <script src="js/vendor/angular/angular-resource.min.js"></script>
+        <script src="js/vendor/angular/angular-cookies.min.js"></script>
+        <script src="js/vendor/angular-storage/angular-storage.js"></script>
+        <script src="js/vendor/angular-md5/angular-md5.js"></script>
+        <script src="js/vendor/angular-spinner/spin.min.js"></script>
+        <script src="js/vendor/angular-spinner/angular-spinner.min.js"></script>
+        <script src="js/vendor/angular-spinner/angular-loading-spinner.js"></script>
+        <script src="js/vendor/ng-flow-standalone/ng-flow-standalone.min.js"></script>
+        <script src="js/vendor/bootstrap/bootstrap.min.js"></script>
+        <script src="js/vendor/angular-ui/ui-bootstrap-tpls-0.13.0.min.js"></script>
+        <script src="js/vendor/ng-cordova/ng-cordova.min.js"></script>
+        <script src="js/vendor/cookie/cookie.min.js"></script>
+        <script src="js/vendor/cryptofoo/cryptofoo.min.js"></script>
+        <script src="js/vendor/store2/store2.min.js"></script>
+        <script src="js/vendor/store/store.min.js"></script>
+        <script src="js/vendor/spin/spin.min.js"></script>
+        <script src="js/vendor/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+        <script src="js/vendor/bootstrap-switch/bootstrap-switch.min.js"></script>
+        <script src="js/vendor/jquery-guillotine/jquery-guillotine.min.js"></script>
+        <script type="text/javascript" src="js/angularApp.js"></script>
+        <script type="text/javascript" src="js/directives/back-button.js"></script>
+        <script type="text/javascript" src="js/directives/confirm-action.js"></script>
+        <script type="text/javascript" src="js/directives/file-model.js"></script>
+        <script type="text/javascript" src="js/services/token.js"></script>
+        <script type="text/javascript" src="js/services/login.js"></script>
+        <script type="text/javascript" src="js/services/user.js"></script>
+        <script type="text/javascript" src="js/services/album.js"></script>
+        <script type="text/javascript" src="js/services/image.js"></script>
+        <script type="text/javascript" src="js/services/albumImage.js"></script>
+        <script type="text/javascript" src="js/services/screen.js"></script>
+        <script type="text/javascript" src="js/services/module.js"></script>
+        <script type="text/javascript" src="js/services/recovery.js"></script>
+        <script type="text/javascript" src="js/services/programming.js"></script>
+        <script type="text/javascript" src="js/interceptors/token.js"></script>
+        <script type="text/javascript" src="js/controllers/main.js"></script>
+        <script type="text/javascript" src="js/controllers/login.js"></script>
+        <script type="text/javascript" src="js/controllers/register.js"></script>
+        <script type="text/javascript" src="js/controllers/album.js"></script>
+        <script type="text/javascript" src="js/controllers/profile.js"></script>
+        <script type="text/javascript" src="js/controllers/image.js"></script>
+        <script type="text/javascript" src="js/controllers/gallery.js"></script>
+        <script type="text/javascript" src="js/controllers/screen.js"></script>
+        <script type="text/javascript" src="js/controllers/recovery.js"></script>
+        <script type="text/javascript" src="js/controllers/programming.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       
+        <script type="text/javascript">
+            angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+            function jqalert(tx){
+                $('#alertas').html('<h3 style="color:#FF3300">'+tx+'</h3>');
+                $('#alertas').fadeIn();
+                setTimeout(function(){
+                    $('#alertas').fadeOut('slow');
+                },1500);
+            }
+			var tt = 'ovas';
+            function co() {
+                var picture = $('#sample_picture');
+                // Make sure the image is completely loaded before calling the plugin
+                // Initialize plugin (with custom event)
+                picture.guillotine({eventOnChange: 'guillotinechange'});
+                // Display inital data
+                var data = picture.guillotine('getData');
+				
+                for(var key in data) {$('#'+key).val(data[key]);}
+                // Bind button actions
+                $('#rotate_left').click(function(){ picture.guillotine('rotateLeft'); });
+                $('#rotate_right').click(function(){ picture.guillotine('rotateRight'); });
+                $('#fit').click(function(){ picture.guillotine('fit'); });
+                $('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
+                $('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
+                // Update data on change
+                picture.on('guillotinechange', function(ev, data, action) {
+                    data.scale = parseFloat(data.scale.toFixed(4));
+                    for(var k in data) {$('#i'+k).html(data[k]); $('#'+k).val(data[k])}
+                });
+                // Make sure the 'load' event is triggered at least once (for cached images)
+                // if (picture.prop('complete')) picture.trigger('load')
+            }
+			
+        </script>
+        
+    </body>
+</html>

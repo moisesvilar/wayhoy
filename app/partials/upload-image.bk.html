@@ -1,0 +1,41 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">engadir imaxe<br />{{album.name}}</h1>
+    <div class="row">
+        <div class="col-xs-12"
+             data-flow-init="configFlow"
+             data-flow-file-success="uploadComplete($flow, $file, $message)"
+             data-flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+             data-flow-name="model.flow"
+        >
+          <span class="thumbnail" data-ng-hide="$flow.files.length" data-flow-btn data-flow-attrs="{accept:'image/*'}"><h3>subir imaxe  </h3> <img src="img/cameraIPHONE.png" /> <h4>Utiliza o móvil en horizontal</h4></span>
+          <h4><span class="thumbnail btn btn-danger" data-ng-show="$flow.files.length" data-ng-click="$flow.cancel()">eliminar</span></h4>
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="thumbnail" data-ng-show="$flow.files.length">
+                        <img data-flow-img="$flow.files[0]" />
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <button data-ng-show="$flow.files.length" class="btn btn-default glyphicon glyphicon-camera" data-ng-click="uploadImage()">subir imaxe</button>
+                </div>
+            </div>
+      </div>
+  
+     <div class="row" data-ng-hide="!gallery.images || gallery.images.length == 0">
+        <h2 class="album-name">das miñas fotos</h2>
+        <div class="col-xs-4" data-ng-repeat="image in gallery.images">
+            <a data-ng-href="album/{{album.id}}/image/{{image.id}}" class="thumbnail">
+                <img data-ng-src="{{image.url_thumbnail}}">
+            </a>
+        </div>
+    </div>
+    <div class="row" data-ng-hide="!galleryr.images || galleryr.images.length == 0">
+        <h2 class="album-name">da galería de R</h2>
+        <div class="col-xs-4" data-ng-repeat="image in galleryr.images">
+            <a data-ng-href="album/{{album.id}}/image/{{image.id}}" class="thumbnail">
+                <img data-ng-src="{{image.url_thumbnail}}">
+            </a>
+        </div>
+    </div>
+</div>

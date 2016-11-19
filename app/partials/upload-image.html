@@ -1,0 +1,102 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+	<div data-ng-hide="model.submitted">
+		<h3 class="album-name">añadir elemento {{album.name}}</h3>      
+		<div class="row">
+			<div class="col-xs-12" style="display:none">
+				<form id="upload-form" name="upload-form" enctype="multipart/form-data" data-ng-submit="uploadImage()">
+					<input type="file" class="filestyle" name="file" id="file" data-file-model="model.file">
+					<br/>
+					<button type="submit" class="btn btn-info btn-block" id="envia" style="display:none">subir imagen</button>
+				</form>
+		  </div>
+			<div class="btn btn-info col-xs-12" onClick="$('#file').click()"  style="padding:10px;margin:15px;width:90%"><span class ="glyphicon glyphicon-upload"> </span> Subir imagen</div>
+		</div>
+   
+           </div>   
+		<div class="row">
+         <button  class="btn btn-info col-xs-12"  data-toggle="collapse" data-target="#gadgets" style="padding:10px;margin:15px;width:90%">
+         <span class ="glyphicon glyphicon-sort-by-attributes"> </span> Gadgets
+         <div id="gadgets" class="collapse">
+         <a class="btn btn-info col-xs-4" data-ng-href="facebook/{{album.id}}" style="padding:10px;margin:15px"><img src="img/facebook.png" height="90" /></a>
+        <a class="btn btn-info col-xs-4" onclick="alert('Envíanos la url de tu RSS a admin@wayhoy.com indicando tu mail de usuario')" style="padding:10px;margin:15px"><img src="img/rss.png" height="90" /></a>
+        <a class="btn btn-info col-xs-4" data-ng-href="url/{{album.id}}" style="padding:10px;margin:15px"><img src="img/Website.jpg" height="90" /></a>
+        <a class="btn btn-info col-xs-4"  data-ng-href="drive/{{album.id}}" style="padding:10px;margin:15px"><img src="img/drive.png" height="90" /></a>
+        </div></div> <div class="row" data-ng-hide="!gallery.images || gallery.images.length == 0">
+         <button data-toggle="collapse" data-target="#galler" class="btn btn-info col-xs-12" style="padding:10px;margin:15px;width:90%"><span class ="glyphicon glyphicon-sort-by-attributes"> </span> o elegir de mi galería</button><br />
+         <div id="galler" class="collapse">
+			<h2>mi galería</h2>
+			<div class="col-xs-6" data-ng-repeat="image in gallery.images">
+				<a ng-click="addimage(image.id, album.id)" class="thumbnail">
+					<img data-ng-src="{{image.url_thumbnail}}" style="height:120px">
+				</a>
+                <span style="color:#0a95ae">subida:</span> <br />{{image.ts}}<br />{{image.tipo}}
+			</div>
+            </div>
+		</div>
+		<div class="row" data-ng-hide="!galleryr.images || galleryr.images.length == 0"><button data-toggle="collapse" data-target="#gallerR" class="btn btn-info col-xs-12" style="padding:10px;margin:15px;width:90%"><span class ="glyphicon glyphicon-sort-by-attributes"> </span> o elegir de la galería Wayhoy!</button>
+        <div id="gallerR" class="collapse">
+			<h2 class="album-name">galería Wayhoy!</h2>
+			<div class="col-xs-6" data-ng-repeat="image in galleryr.images">
+				<a ng-click="addimage(image.id, album.id, 'si')" class="thumbnail">
+					<img data-ng-src="{{image.url_thumbnail}}" style="height:120px">
+				</a>
+			</div>
+        </div>
+		</div>
+    <div class="row" data-ng-hide="!gallerydual.images || gallerydual.images.length == 0"><button data-toggle="collapse" data-target="#gallerDual" class="btn btn-info col-xs-12" style="padding:10px;margin:15px;width:90%"><span class ="glyphicon glyphicon-sort-by-attributes"> </span> de mi tpv</button>
+        <div id="gallerDual" class="collapse">
+			<h2 class="album-name">imágenes desde TPV</h2>
+			<div class="col-xs-6" data-ng-repeat="(data,products) in gallerydual.images">
+				<a class="thumbnail">
+					<img data-ng-src="{{products.imageURL}}" style="height:120px">{{data.imageURL}} - {{album.id}} - {{image.productID}}
+				</a>
+			</div>
+        </div>
+    </div>
+	</div>
+	<div data-ng-show="model.submitted">
+        <h1>Escala a imaxe</h1>
+        <div class='frame' style="border:3px solid black;border-radius:4px">
+            <img id='sample_picture' data-ng-src="{{image.url}}" onload="co()">
+        </div>
+        <h3 class="fa fa-arrows"> Podes mover a imaxe dentro do cuadro</h3>
+        <div class="container-fluid">
+         <div id='controls' class="row" style="margin-top:15px;margin-bottom:15px;">
+            <button id='rotate_left'  type='button' title='Rotate left' class="btn btn-warning fa fa-undo col-xs-2 col-sm-2 col-md-2 col-lg-2"> </button>
+            <button id='zoom_out'     type='button' title='Zoom out' class="btn btn-warning fa fa-search-minus  col-xs-3 col-sm-3 col-md-3 col-lg-3"> </button>
+            <button id='fit'          type='button' title='Fit image' class="btn btn-warning fa fa-compress  col-xs-2 col-sm-2 col-md-2 col-lg-2"> </button>
+            <button id='zoom_in'      type='button' title='Zoom in' class="btn btn-warning fa fa-search-plus  col-xs-3 col-sm-3 col-md-3 col-lg-3"> </button>
+            <button id='rotate_right' type='button' title='Rotate right' class="btn btn-warning  fa fa-repeat  col-xs-2 col-sm-2 col-md-2 col-lg-2"> </button>         
+        </div>
+    </div>
+    
+        
+        <form data-ng-submit="updateImage()">
+            <input type="hidden" class="form-control" id="url" value="{{image.url}}">
+            <input type="hidden" class="form-control" id="imid" value="{{image.url}}">
+            <input type="hidden" class="form-control" id="scale">
+            <input type="hidden" class="form-control" id="angle">
+            <input type="hidden" class="form-control" id="x">
+            <input type="hidden" class="form-control"  id="y">  
+            <div class="container-fluid">
+            <div class="row">
+                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+             <button class="btn btn-danger btn-block" ng-click="removeImage()">
+                <i class="fa fa-times"> Descartar</i>
+            </button>
+        </div>
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <button type="submit" class="btn btn-success btn-block"><i class="fa fa-check"></i></button>           </div>
+       
+                </div>
+            </div>
+        </form>
+    </div>
+    <script>
+    $(document).ready(function(e) {
+        setTimeout(function(){$('#file').change(function(){$('#envia').click();})},500);
+       ini='1';
+    });
+    
+    </script>

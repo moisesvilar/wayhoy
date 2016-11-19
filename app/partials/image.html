@@ -1,0 +1,92 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <div data-ng-hide="show">
+        <form>
+            <h1>datos de la imagen</h1>
+            <div class="media">
+                <div class="media-left">
+                    <a data-ng-href="#"  data-toggle="modal" data-target="#myModal3">
+                        <img class="media-object" data-ng-src="{{image.url_thumbnail}}" alt="{{image.title}}">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">álbum: {{album.name}}</h4>
+                     <i class="fa fa-plus" style="color:#666;font-size:8px"> clic para ampliar</i>
+                </div>
+             <div data-ng-show="model.description == 'Fanpage:'|| model.title == 'Url:' || model.title == 'Feed:' || model.title == 'Drive:'">   
+               Elemento: {{image.description}}
+               ID: {{image.title}} <br />
+               {{image.subdescription}}
+               </div>
+            </div>
+            <hr/>
+            <div class="form-group">
+              <div data-ng-show="model.description == 'Drive:' || model.description == 'Fanpage:'">  
+                <label for="title">ID</label>
+                </div>
+                 <div data-ng-show="model.description == 'Url:' || model.description == 'Feed:'"> 
+                <label for="title">Url</label>
+                </div>
+               
+                <div data-ng-show="model.description != 'Url:' && model.description != 'Feed:' && model.description != 'Drive:' && model.description != 'Fanpage:'"> 
+                <label for="title">título</label>
+                </div>
+                <input type="text" class="form-control" id="title" data-ng-model="model.title" placeholder="..." maxlength="50">
+                
+            </div>
+             </div>
+            <div data-ng-hide="model.description == 'Fanpage:' || model.description == 'Url:' || model.description == 'Feed:' || model.description == 'Drive:'">
+            <div class="form-group">
+                <label for="description">descripción</label>
+                <textarea [name="description"] [ng-maxlength="180"] class="form-control" rows="5" id="description" data-ng-model="model.description" rows="5">
+                </textarea>
+            </div>
+            <div class="form-group">
+                <label for="subdescription">subdescripción</label>
+                <input type="text" class="form-control" id="subdescription" data-ng-model="model.subdescription" placeholder="subdescripción de la imagen" maxlength="25">
+            </div>
+             </div>
+            <div class="form-group">
+                <label for="duration">Duración (segundos)</label>
+                <input type="text" pattern="\d+" class="form-control" id="duration" data-ng-model="model.duration" placeholder="duración en segundos: 11" maxlength="25">
+            </div>
+            <span class="label label-success" data-ng-show="model.success">datos actualizados</span><br/>
+            <button type="submit" class="btn btn-success btn-block" data-ng-click="submit()"><i class="fa fa-check"></i> guardar</button>
+        </form>
+      <button class="btn btn-danger btn-block" ng-click="remove();" style="display:none"><i class="glyphicon glyphicon-fast-backward"> </i> descartar</button>
+   
+        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      <button type="button" class="btn btn-default" data-dismiss="modal" style="float:right"><i class="fa fa-close"></i> cerrar</button><br /> estás en el álbum <h4 class="media-heading">{{album.name}}</h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+            <img class="img-responsive" width="100%" height="100%" data-ng-src="{{image.url}}?temp=ui">
+        </div></div>
+        </div></div></div>
+        <!-- fin modal -->
+
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">eliminar imagen del álbum</h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+        Con esta acción descartas la imagen del álbum <br>{{album.name}}<br>Continuará en tu galería
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove();">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$('#myModal1').modal('hide');
+$('body').removeClass('modal-open');
+$('.modal-backdrop').remove();
+</script>

@@ -1,0 +1,23 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <a onclick="chatenv('goSend5', 'reload', 'reload', 'reload', 1005)" class="btn btn-info glyphicon glyphicon-refresh col-xs-12"> Recarga tv</a>
+    <h1 class="album-name">Content</h1>
+    <a href="video"  class="btn btn-info glyphicon glyphicon-facetime-video col-xs-5"> Streams</a> <div class="col-xs-2"></div> <a href="templates"  class="btn btn-info glyphicon glyphicon-blackboard col-xs-5"> Plantillas</a>
+    <h2 class="album-name">Mis álbumes</h2>
+    <alert data-ng-show="model.albums.length == 0" type="info"><strong>CREA TU PRIMER ÁLBUM Y ENVÍALO AL LA PANTALLA!</strong></alert>
+	
+    <div class="row">
+        <div class="col-xs-6">
+            <a href="album/new" class="thumbnail img-item">
+                <img src="img/plus.png">
+            </a>
+        </div>
+        <div class="col-xs-6" data-ng-repeat="album in model.albums">
+            <a data-ng-href="album/{{album.id}}" class="thumbnail img-item">
+                <img data-ng-src="{{(album.images && album.images[0]) ? album.images[0].url_thumbnail : 'img/picture.png'}}"   style="height:70px">
+                <small>{{album.name}}</small>
+            </a>
+        </div>
+    </div>
+</div>
+<a style="display:none" data-ng-href="album/1005/send" id="goSend5"></a>

@@ -1,0 +1,10 @@
+<div class="jumbotron text-center">
+    <h1>BIENVENIDO!</h1>
+   </div>
+    
+<a data-ng-hide="model.isLogin='false'" class="btn btn-info col-xs-12" id="loginbutton" ng-href='album' style="padding:20px;margin:20px;width:80%" id="continuar">Continuar</a>
+<div data-ng-show="model.isLogin = 'false'">
+     	<a style="margin:20px" class="btn btn-info" onclick="$('#collaps').click()">login</a><br />
+		<a style="margin:20px" class="btn btn-info"  href="recovery" data-ng-click="model.collapsed = true">recuperar password</a><br />
+        <a style="margin:20px" class="btn btn-info" href="register">REGISTRO</a>
+</div>

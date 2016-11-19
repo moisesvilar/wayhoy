@@ -1,0 +1,19 @@
+<input id="query" type="text" placeholder="url a mostrar" class="col-xs-12" style="color:#000;padding:20px;margin:10px">
+pon la url sin http:// o https://
+Puedes subir url de imàgenes o vídeos
+</label>
+<input type="button" value="enviar" class="col-xs-12 btn btn-info" id="busca" style="padding:20px;margin:10px" autocapitalize="off">	
+<div class="container" id="container">
+</div>
+<script>
+$('#busca').click(function(){
+	var q=$('#query').val();
+	q = q.replace('http:','');
+	q = q.replace('https:','');
+	if (q.replace('//','')==q){
+		q=q.replace(q,'//'+q);
+		}
+	addurl(q, 597)
+	})
+
+</script>

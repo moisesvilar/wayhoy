@@ -1,0 +1,159 @@
+<!-- Hacer lo mismo con templates u otras acciones -->
+<div style="margin:15px">
+<form id="form" name="form">	<label for="query" class="col-xs-12">	
+   	<input id="query" value='' type="text" placeholder="buscar en Youtube..." class="col-xs-12" style="color:#000"></label>
+    <br /><br />
+<select class="form-control" id="type" name="type" class="col-xs-12">
+<option value="playlist">listas</option>
+<option value="channel">Canales</option>
+<option value="live">Live</option>
+</select>
+<br />
+	<input type="button" onclick="mostrar()" value="buscar" class="col-xs-12 btn btn-info">	
+</form>
+</div>
+<div id="results"></div>
+<div class="container">
+</div>
+<a style="display:none" data-ng-href="programming/new" id="goProg"></a>
+<a style="display:none" data-ng-href="album/1000/send" id="goSend"></a>
+<script>
+var type='playlist';
+$('#type').change(function(){
+	type=$('#type').val();
+	})
+var tipomost;
+$(document).ready(function(e) {
+$.get(
+    apoint + 'luk/lists.php?rs=' + tt,
+    function(datas){ 
+	        $('.container').html('<h2>Sugerencias<h2>');           
+        $.each(datas, function(i, item){
+			if (item.tipo!=item.tipo.replace('Youtu', '')){
+				var imilust='img/youtube.png';
+				}else{
+				var imilust='img/anagbcoazul.png';	
+				}
+				switch (item.tipo){
+					case 'YoutubeList': tipomost = '<span style="color:blue">Lista: <br></span>';
+					break;
+					case 'YoutubeChannel': tipomost = '<span style="color:green">Canal: <br></span>';
+					break;
+					case 'YoutubeLive': tipomost = '<span style="color:red">Live: <br></span>';
+					break;
+					}
+    $('.container').append('<div style="margin:15px"><span class="col-xs-5" style="float:left;"><img src="'+imilust+'" style="width:40%;float:right">'+tipomost+'<h6>'+item.set+'</h6></span><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-6" onClick="chatenv(\'goSend\',\''+item.tipo+'\',\''+item.id+'\',\''+item.set+'\', \''+1000+'\');"><i class="fa fa-eye"></i> Mostrar en TV </div><br><br><br><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-6" onClick="chatenv(\'goProg\',\''+item.tipo+'\',\''+item.id+'\', \''+item.set+'\', \''+1000+'\');"><i class="fa fa-clock-o"></i> Programar </div><div style="clear:both"></div><hr></div>')
+})
+    },
+    'json'
+);
+});
+function mostrar() {
+			var user = store.get('wayhoy_user');
+			var pass = store.get('wayhoy_pass');
+			var hash = cryptofoo.hash('md5', user + pass );	
+			var q = $('#query').val();
+			var type=$('#type').val();
+			var url = apoint + 'luk/appyout.php?u=' + encodeURIComponent(user) + '&t=' + hash +'&type=' + type + '&q=' + q;	
+			if (type=="live"){
+				livequery(q);
+			}else{
+				$('#results').html('Un momento...');
+					if (q==''){
+						$('#results').html('Búsqueda vacía...');
+				
+					}else{				
+						var results = '';
+						$.getJSON(url,function(json){
+							var user = store.get('wayhoy_user');
+							var pass = store.get('wayhoy_pass');
+							var hash = cryptofoo.hash('md5', user + pass );	
+							
+							if (type == 'channel') {
+								$('#results').html('<h3 style="margin-left:15px">Búsqueda de canales para "'+q+'"...</h3>');
+								$('#results').append('<h4 id="unmomen">buscando...</h4>');
+								$.each(json.items,function(i,item){
+									var tit = item.snippet.title;
+									tit = tit.replace('"', '');
+									tit=tit.replace("'", '');
+									var desc = item.snippet.description;
+									desc = desc.replace('"', '');
+									desc=desc.replace("'", '');
+								var url2 = apoint + 'luk/appyout.php?u=' + encodeURIComponent(user) + '&t=' + hash +'&id=' + item.id.channelId +'&plid=si';
+								results = '<br>' + tit + '<br><img width="80" src="' + item.snippet.thumbnails.default.url + '">';
+									$.getJSON(url2,function(datas){
+										$.each(datas.items, function(y, itemss) {	
+											$.getJSON(url2,function(datas){
+											var user = store.get('wayhoy_user');
+											var pass = store.get('wayhoy_pass');
+											var hash = cryptofoo.hash('md5', user + pass );
+											var url3 = 	apoint + 'luk/appyout.php?u=' + encodeURIComponent(user) + '&t=' + hash +'&playlistId=' + itemss.contentDetails.relatedPlaylists.uploads;
+												$.getJSON(url3,function(datass){
+													
+													results = '<div style="margin:15px"><span class="col-xs-6" style="float:left"><h4>'+tit+'</h4>'+desc+'<br><img src="'+item.snippet.thumbnails.default.url+'"></span><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goSend\',\'YoutubeChannel\',\''+itemss.contentDetails.relatedPlaylists.uploads+'\',\''+item.snippet.title+'\', \''+1000+'\');"><i class="fa fa-eye"></i> Mostrar en TV </div><br><br><br><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goProg\',\'YoutubeChannel\',\''+itemss.contentDetails.relatedPlaylists.uploads+'\',\''+item.snippet.title+'\', \''+1000+'\');"><i class="fa fa-clock-o"></i> Programar </div></div><div style="clear:both"></div><hr>';
+													$('#results').append(results);
+												})
+												
+											})
+										})
+									})
+								})
+									$('#unmomen').html('');	
+							} else if (type=='playlist'){	
+									$('#results').html('<h3 style="margin-left:15px">Búsqueda de listas para "'+q+'"...</h3>');
+									$('#results').append('<h4 id="unmomen">buscando...</h4>');
+									buscadatos(json)
+							}
+						})
+					}
+			}
+}
+function buscadatos(data){	
+			var user = store.get('wayhoy_user');
+			var pass = store.get('wayhoy_pass');
+			var hash = cryptofoo.hash('md5', user + pass );			
+	$.each(data.items, function(y, itemss) {
+		
+	var thumb=itemss.snippet.thumbnails.default.url;
+	var id=itemss.id.playlistId;
+	var tit=itemss.snippet.title;
+	var desc=itemss.snippet.description;
+	tit = tit.replace('"', '');
+	tit=tit.replace("'", '');
+	desc = desc.replace('"', '');
+	desc=desc.replace("'", '');
+	var url4 = apoint + 'luk/appyout.php?u=' + encodeURIComponent(user) + '&t=' + hash +'&playlistId=' + id;	
+	$.getJSON(url4,function(json){
+													results = '<div style="margin:15px"><span class="col-xs-6" style="float:left"><h4>'+tit+'</h4><img src="'+thumb+'"><div style="clear:both"></div>'+desc+'<br>Vídeos: ' + json.pageInfo.totalResults + '</span><br><br><br><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goSend\',\'YoutubeList\',\''+id+'\',\''+tit+'\', \''+1000+'\');"><i class="fa fa-eye"></i> Mostrar en TV </div><br><br><br><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goProg\',\'YoutubeList\',\''+id+'\',\''+tit+'\', \''+1000+'\');"><i class="fa fa-clock-o"></i> Programar </div></div><div style="clear:both"></div><hr>';
+													$('#results').append(results);	
+							})
+						})
+						$('#unmomen').html('');
+                 }
+function livequery(q){
+			var user = store.get('wayhoy_user');
+			var pass = store.get('wayhoy_pass');
+			var hash = cryptofoo.hash('md5', user + pass );	
+			var url = apoint + 'luk/appyout.php?u=' + encodeURIComponent(user) + '&t=' + hash +'&live=liveo&q='+q;
+				if (q==''){
+				$('#results').html('Búsqueda vacía...');
+				
+				}else{
+					var results = 'Búsqueda vacía ...';
+					$('#results').html('');
+				$.getJSON(url,function(json){
+$.each(json.items,function(y,itemss){
+	var tit = itemss.snippet.title;
+	tit = tit.replace('"', '');
+	tit=tit.replace("'", '');
+	var desc = itemss.snippet.description;
+	desc = desc.replace('"', '');
+	desc=desc.replace("'", '');
+					 results = '<div style="margin:15px"><span class="col-xs-6" style="float:left"><h4>'+tit+'</h4>'+desc+'<br><img src="'+itemss.snippet.thumbnails.default.url+'"></span><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goSend\',\'YoutubeLive\',\''+itemss.id.videoId+'\',\''+tit+'\', \''+1000+'\');"><i class="fa fa-eye"></i> Mostrar en TV </div><br><br><br><div style="float:right" class="thumbnail btn btn-info sendalbum prog col-xs-4" onClick="chatenv(\'goProg\',\'YoutubeLive\',\''+itemss.id.videoId+'\',\''+tit+'\', \''+1000+'\');"><i class="fa fa-clock-o"></i> Programar </div></div><div style="clear:both"></div><hr>';
+													$('#results').append(results);
+					 })
+				})
+				}
+}
+</script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>

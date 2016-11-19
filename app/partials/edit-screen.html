@@ -1,0 +1,52 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="update()">
+        <div class="form-group">
+            <label for="name">código</label>
+            <input type="text" class="form-control" id="code" data-ng-model="screen.code" readonly>
+        </div>
+        <div class="form-group">
+            <label for="name">nombre</label>
+            <span class="label label-danger" data-ng-show="model.errorName">{{model.errorName}}</span>
+            <input type="text" class="form-control" id="name" data-ng-model="model.name" placeholder="Un nombre para la pantalla" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">guardar</button>
+    </form>
+</div>
+                <div class=" col-xs-12" data-ng-hide="!conectada">
+                <a id="preview" data-toggle="modal" data-target="#myModaldesasoc" class="btn btn-success class btn-block glyphicon glyphicon-eye-open" aria-label="Close"> Preview 
+            
+                </a></div>
+                <div class=" col-xs-12" data-ng-hide="conectada">
+                En estos momentos la pantalla está desonectada<br />Compruébalo en unos minutos y si continúa desconectada ponte en contacto con el servicio técnico</div>
+                </span>
+            </div>
+<div class="modal fade ng-scope" id="myModaldesasoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabeldesasoc" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">Preview:  Pantalla:  {{screen.name}} <br />Code:  {{screen.code}}</h4>
+      </div>
+      <div class="modal-body ng-binding" id="mod-body">
+      <iframe src="{{preview}}" id="previewframe" style="width:330px;height:186px;border:4px solid black;border-radius:5px"></iframe>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="closeframe" data-ng-click="cierraPrev()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+$(document).ready(function(e) {	
+    $('#preview').click(function(){
+		var uripreview = apoint.replace('/mobile/', '/apptv/');
+		$('#previewframe').each(function() {
+		$(this).attr('src', uripreview + $(this).attr("src"));		
+		})
+		setTimeout(function(){
+			$('#previewframe').attr('src',$('#previewframe').attr('src'));
+			}, 400)
+	})
+});
+</script>

@@ -1,0 +1,57 @@
+<div class="container" id='content'>
+	<form data-ng-submit="submit()">
+		<h1>Escala a imaxe</h1>
+		<div data-ng-repeat="model in model.images | limitTo:1">
+			<div class='frame'>    
+				<img id='sample_picture' data-ng-src="{{model.url}}" onLoad="co()">
+			</div>
+			<div id='controls'>
+				<button id='rotate_left'  type='button' title='Rotate left'> &lt; </button>
+				<button id='zoom_out'     type='button' title='Zoom out'> - </button>
+				<button id='fit'          type='button' title='Fit image'> [ ]  </button>
+				<button id='zoom_in'      type='button' title='Zoom in'> + </button>
+				<button id='rotate_right' type='button' title='Rotate right'> &gt; </button>
+			</div>
+			<input type="text" class="form-control" id="url" data-ng-model="model.url" placeholder="url da imaxe" value="{{model.url}}">
+			<input type="text" class="form-control" id="imid" data-ng-model="model.id" placeholder="id da imaxe" value="{{model.url}}">
+			<input type="text" class="form-control" data-ng-model="model.scale" id="scale">
+			<input type="text" class="form-control" data-ng-model="model.angle" id="angle">
+			<input type="text" class="form-control" data-ng-model="model.x" id="x">
+			<input type="text" class="form-control"  data-ng-model="model.y" id="y">
+		</div>
+		<div class=".col-md-6">
+			<button type="submit" class="btn btn-success btn-block"><i class="fa fa-check"></i></button>
+		</div>
+	</form>
+	<div class=".col-md-6">
+		<button class="btn btn-danger btn-block" data-ng-confirm data-ng-confirm-message="¿Descartar imaxe?" data-ng-confirm-action="removup()">
+			<i class="fa fa-times"></i>
+		</button>
+	</div>     
+</div>
+<script type='text/javascript'>
+function co(){
+	jQuery(function() {
+		var picture = $('#sample_picture');
+		// Make sure the image is completely loaded before calling the plugin
+		// Initialize plugin (with custom event)
+		picture.guillotine({eventOnChange: 'guillotinechange'});
+		// Display inital data
+		var data = picture.guillotine('getData');
+		for(var key in data) {$('#'+key).val(data[key]);}
+		// Bind button actions
+		$('#rotate_left').click(function(){ picture.guillotine('rotateLeft'); });
+		$('#rotate_right').click(function(){ picture.guillotine('rotateRight'); });
+		$('#fit').click(function(){ picture.guillotine('fit'); });
+		$('#zoom_in').click(function(){ picture.guillotine('zoomIn'); });
+		$('#zoom_out').click(function(){ picture.guillotine('zoomOut'); });
+		// Update data on change
+		picture.on('guillotinechange', function(ev, data, action) {
+		  data.scale = parseFloat(data.scale.toFixed(4));
+		  for(var k in data) {$('#i'+k).html(data[k]); $('#'+k).val(data[k])}
+		});
+		});
+		// Make sure the 'load' event is triggered at least once (for cached images)
+		// if (picture.prop('complete')) picture.trigger('load')
+	}
+</script>

@@ -1,0 +1,51 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">imágenes gentileza Wayhoy!</h1>
+    <div class="row">
+        <div class="col-xs-4" data-ng-repeat="image in model.images">
+            <button data-ng-click="setImage(image)" class="thumbnail"  data-toggle="modal"  data-target="#myModal1">
+                <img data-ng-src="{{image.url_thumbnail}}">
+            </button>
+        </div>
+    </div>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">preview</h4>
+      </div>
+      <div class="modal-body">
+           <div class="row" data-ng-show="image">
+        <div class="col-xs-12">
+            <img class="img-responsive" width="100%" height="100%" data-ng-src="{{image.url}}?temp=uit">
+        </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+      <a data-ng-href="image/{{image.id}}/album" class="btn btn-info btn-block">
+                <i class="fa fa-picture-o"></i> asociar a un álbum
+            </a>           
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">eliminar</h4>
+      </div>
+      <div class="modal-body">
+        Con esta acción eliminarás la imagen de tu cuenta
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelabut">cancelar</button>
+        <button type="button" class="btn btn-primary" id="okbut" ng-click="remove();">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

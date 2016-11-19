@@ -1,0 +1,128 @@
+<IfModule mod_rewrite.c>
+
+# Activar RewriteEngine
+Options +FollowSymLinks
+RewriteEngine On
+# RewriteBase /
+RewriteBase /wayhoy/
+RewriteRule /?\.htaccess$ - [F,L]
+RewriteRule /?mobile/includes/config.ini$ - [F,L]
+RewriteRule /?api/includes/config.ini$ - [F,L]
+
+#   Token temporal: GET
+#       Entrada:  /token
+#       Salida: token.php
+RewriteRule ^token$ mobile/token.php [QSA,L]
+
+#   Acceso: GET
+#       Entrada:  /login
+#       Salida: login.php
+RewriteRule ^login$ mobile/login.php [QSA,L]
+
+#   Registro de usuario: POST (application/json)
+#       Entrada:  /user
+#       Salida: user.php
+RewriteRule ^user$ mobile/user.php [QSA,L]
+
+#   Listado de álbumes: GET
+#   Creación de nuevos álbumes: POST (application/json)
+#   Edición de álbumes recién creados: PUT (application/json)
+#       Entrada:  /album
+#       Salida: album.php
+RewriteRule ^album/?$ mobile/album.php [QSA,L]
+
+#   Eliminación de álbumes ya creados: DELETE
+#   Obtención de datos de un album: GET
+#       Entrada:  /album/:id
+#       Salida: album.php?id=:id
+RewriteRule ^album/(\d+)/?$ mobile/album.php?id=$1 [QSA,L]
+
+#   Listado de fotos de la galería: GET
+#   Subida de imágenes a la galería: POST (multipart/form-data)
+#       Entrada:  /image
+#       Salida: image.php
+RewriteRule ^image/?$ mobile/image.php [QSA,L]
+
+#   Obtención de datos de una imagen: GET
+#   Eliminación de imágenes: DELETE
+#       Entrada:  /image/:id
+#       Salida: image.php?id=:id
+RewriteRule ^image/(\d+)/?$ mobile/image.php?id=$1 [QSA,L]
+
+#   Obtención de datos de una imagen asociada a un álbum: GET
+#   Edición de datos de una imagen: PUT (application/json)
+#   Desasociar una imagen de un álbum: DELETE
+#   Enlazar imágenes ya subidas a un álbum: POST (application/json)
+#       Entrada:  /album/:album/image/:id
+#       Salida: image.php?album=:album&id=:id
+RewriteRule ^album/(\d+)/image/(\d+)/?$ mobile/image.php?album=$1&id=$2 [QSA,L]
+
+#   Subida de nuevas imágenes a un álbum: POST (multipart/form-data)
+#       Entrada:  /album/:album/image/:id
+#       Salida: image.php?album=:album
+RewriteRule ^album/(\d+)/image/?$ mobile/image.php?album=$1 [QSA,L]
+
+#   Envío de un álbum al módulo WayHoy: POST (application/json)
+#       Entrada:  /module
+#       Salida: module.php
+RewriteRule ^module/?$ mobile/module.php [QSA,L]
+
+#   Listado de STBs: GET
+#   Añadir un STB a una cuenta de usuario: POST (application/json)
+#   Edición de un STB asociado a cuenta de usuario: PUT (application/json)
+#       Entrada:  /screen
+#       Salida: screen.php
+RewriteRule ^screen/?$ mobile/screen.php [QSA,L]
+
+#   Alta de clientes (opAltaCliente): POST
+#       Entrada:  api/customers
+#       Salida: api/customer.php
+RewriteRule ^api/customers/?$ api/customer.php [QSA,L]
+
+#   Modificación de clientes (opModificacionCliente): PUT
+#   Baja de cliente (opBajaCliente): DELETE
+#       Entrada:  api/customers/:idcustomer
+#       Salida: api/customer.php?idCustomer=:idCustomer
+RewriteRule ^api/customers/(\S+)/?$ api/customer.php?idCustomer=$1 [QSA,L]
+
+#   Alta de STBs (opAltaSTB): POST
+#       Entrada:  api/stbs
+#       Salida: api/stb.php
+RewriteRule ^api/stbs/?$ api/stb.php [QSA,L]
+
+#   Modificación de STBs (opModificacionSTB): PUT
+#   Baja de STBs (opBajaSTB): DELETE
+#       Entrada:  api/stbs/:icc
+#       Salida: api/stb.php?icc=:icc
+RewriteRule ^api/stbs/(\S*)/?$ api/stb.php?icc=$1 [QSA,L]
+
+#   Consulta de cliente a partir de ICC: GET
+#   Consulta de album a partir de ICC: GET
+#       Entrada: api/search/:which?query=:icc&language=es|gl
+#       Salida: api/search.php?which=:which&query=:icc&language=es|gl
+RewriteRule ^api/search222/(\S*)/?$ api/search.php?which=$1 [QSA,L]
+
+#   Creación de token a partir de ICC
+#       Entrada: api/tokens
+#       Salida: api/token.php
+RewriteRule ^api/tokens/?$ api/token.php [QSA,L]
+
+#   Obtención de RSS de contratación: GET
+#       Entrada: api/rssAdvertising
+#       Salida: api/rss.php&which=advertising
+RewriteRule ^api/rssAdvertising/?$ api/rss.php?which=advertising [QSA,L]
+
+#   Obtención de RSS de tutorial: GET
+#       Entrada: api/rssTutorial
+#       Salida: api/rss.php&which=tutorial
+RewriteRule ^api/rssTutorial/?$ api/rss.php?which=tutorial [QSA,L]
+# si es app tv
+# QSA query string append significa que añade toda la query string
+	RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^apptv/(.*)      apptv [QSA,L]
+# si llegas vas a la raíz.
+	RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)       app
+</IfModule>

@@ -1,0 +1,121 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+   <h3 class="album-name"><span style="color:#000">álbum:</span> {{album.name}}</h3>
+    <div class="row">
+        <div class="col-xs-12">
+        <a href="#" data-ng-click="loadMore()"></a>
+            <a data-ng-href="album/{{album.id}}/" id="iralbum"></a>
+            <h4><a data-ng-href="album/{{album.id}}/send" class="thumbnail btn btn-success prog" data-album="{{album.id}}" data-cambio="album" data-valor="{{album.name}}"><i class="fa fa-eye"></i> Mostrar en TV </a></h4>
+            <h4><a data-ng-href="programming/new" class="thumbnail btn prog" data-album="{{album.id}}" data-cambio="album" data-valor="{{album.name}}"><i class="fa fa-clock-o"></i> Programar </a></h4>            
+            <h4><a data-ng-href="edit-album/{{album.id}}" class="thumbnail btn"><i class="fa fa-pencil"></i> modificar</a></h4>
+            <button class="btn btn-danger btn-block thumbnail" data-toggle="modal" data-target="#myModal">
+                <i class="fa fa-times"></i> eliminar
+            </button>
+        </div>
+    </div>
+    <div class="row" zzzwhen-scrolled="loadMore()">
+          <div class="col-xs-8">
+            <a data-ng-href="album/{{album.id}}/upload" class="thumbnail" style="height:90px">
+                <img src="img/plus.png" style="height:70px;float:left"> Añadir Imagen
+            </a>
+        </div><div style="clear:both"></div>Imágenes
+        <div class="col-xs-12 btn btn-info" data-ng-repeat="image in album.images" style="text-align:left;padding:7px;color:#FFF">
+            <a href="#" data-ng-click="setImage(image)" data-toggle="modal" data-target="#myModal1">
+                <img data-ng-src="{{image.url_thumbnail}}?temp=uit"  style="height:70px;float:right;margin:7px">Posición : {{image.position}}<br /><span style="text-align:left;color:#FFF;font-size:10px">
+            Título: {{image.title}}<br />
+            Duración: {{image.duration}}<br />
+            Precio/Subdesc: {{image.title}}<br /></span>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">preview</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row" data-ng-show="image">
+                    <div class="col-xs-12">
+                        <img class="img-responsive" width="100%" height="100%" data-ng-src="{{image.url_thumbnail}}?temp=uit">
+                        
+                        <div style="z-index:100;position:absolute;bottom:35px;background:rgba(0,0,0,0.5);width:95%;"><span style="color:red;margin-left:14px;float:right;border:1px solid red;border-radius:6px">{{image.subdescription}}</span>
+                        <span style="color:white;margin-left:10px;font-size:12px">{{image.title}}</span> <br />
+                 <span style="color:white;margin-left:10px;font-size:10px">{{image.description}}</span>
+                 
+                    </div>
+                    <h5>duración: {{image.duration}} sg </h5>
+                </div>
+            </div>
+            <div class="modal-footer">
+            	 <div class="col-xs-12">
+                 posición
+                       <select data-ng-change="cambiarPosicion(image.id, album.id)" data-ng-model="model.position" class="form-control">
+  <option data-ng-repeat="posImagenActual in obtenerPosicionesDisponibles()" value="{{posImagenActual}}" data-ng-selected="posImagenActual == image.position">{{posImagenActual}}</option>
+</select>
+                    </div>
+                    <div class="col-xs-12">
+                 
+                    </div>
+                    <div style="clear:both"></div>
+                    <div>
+            	<a data-ng-href="album/{{album.id}}/image/{{image.id}}/" class="btn btn-success btn-block">
+                	<i class="fa fa-eye"></i> modificar
+            	</a>
+                <a data-ng-href="album/{{album.id}}/image/{{image.id}}/duplica/" class="btn btn-info btn-block">
+                    <i class="fa fa-plus-square"></i> duplicar
+                </a>
+                <button class="btn btn-danger btn-block" data-toggle="modal" data-target="#myModaldesasoc" aria-label="Close">
+                    <i class="fa fa-times"></i> retirar
+                </button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">eliminar álbum</br>{{album.name}}<h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+        Con esta acción eliminarás este álbum
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove();">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade ng-scope" id="myModaldesasoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabeldesasoc" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="myModalLabel">eliminar imagen del álbum</h4>
+      </div>
+      <div class="modal-body ng-binding" id="mod-body">
+        Con esta acción descartas la imagen del álbum <b>{{album.name}}</b> <br /><h4>La imagen continuará en la galería</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="removeFrAl(image.id);">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+$('.prog').click(function(){
+	sessionStorage.setItem('album',$(this).attr('data-album'));
+	sessionStorage.setItem('cambio',$(this).attr('data-cambio'));
+	sessionStorage.setItem('valor',$(this).attr('data-valor'));
+ });
+    </script>

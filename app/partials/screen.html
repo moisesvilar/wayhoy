@@ -1,0 +1,23 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">Mis pantallas</h1>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="" data-ng-repeat="screen in model.screens">
+                <div class=" col-xs-12"><a data-ng-href="screen/{{screen.code}}" class="btn btn-info btn-block glyphicon glyphicon-eye-open"> 
+                   Nombre: {{screen.name}} <br />Code:  {{screen.code}}<br><span style="color:green">modifica</span>
+                </a></div>
+
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <a data-ng-href="screen/new" class="btn btn-success btn-block">
+                    añadir nueva pantalla
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
