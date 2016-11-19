@@ -2,437 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09757101-44d5-4461-b2e9-0b13f2d4585a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/es/advertising.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/es/advertising_bk.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/es/tutorial.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/es/tutorial_album.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/es/tutorial_bk.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/gl/advertising.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/gl/tutorial.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/images/gl/tutorial_album.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/tutorial_album-es.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/fonts/glyphicons-halflings-regular.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/fonts/glyphicons-halflings-regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/fonts/glyphicons-halflings-regular.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/fonts/glyphicons-halflings-regular.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/Oswald-Bold.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/Oswald-Light.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/Oswald-Regular.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/RGerstner-Bold.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/RGerstner-Bold.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/RGerstner-Bold.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/RGerstner.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/fonts/gerstner.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/anagbcoazul.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/cameraIPHONE.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/comodrive.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/drive.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/facebook.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/logo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/logonegroazul.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/picture.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/plus.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/rss.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tpl5.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tpl8.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tplfull.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tplgram.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tplinfo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/tplinfog.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/website.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/img/youtube.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/FontAwesome.otf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/fontawesome-webfont.eot" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/fontawesome-webfont.ttf" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/fontawesome-webfont.woff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/fontawesome-webfont.woff2" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv144.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv192.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv36.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv48.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv72.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/promotv96.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/images/phpmailer.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/images/phpmailer_mini.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/wrapping.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.htaccess" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/wayhoy.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/checkambio.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/customer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/ATOM.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/COPYING" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/Feed.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/Item.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/README" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/RSS1.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/RSS2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/examples/example_atom.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/examples/example_minimum.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/examples/example_rss1.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/FeedWriter/examples/example_rss2.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/config.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/db_utils.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/functions.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/global.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/ini.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/login.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/includes/model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/OAuth.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/apienvia.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/apifb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/apivalida.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/apiyout.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/apiyoutscr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/ax.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/axini.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/codegram.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/credens.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/framegram.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/imageaddalbum.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/imageordena.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/miniconfig.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/pr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/quealbum.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/twitter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/luk/twitteroauth.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/rss.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/rss/advertising.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/rss/album.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/rss/tutorial.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/rss/tutorial_album.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/search.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/stb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/api/token.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/guillotine.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/index.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/jquery.guillotine.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/boostratp-switch/bootstrap-switch.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/bootstrap/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/bootstrap/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/animated.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/bordered-pulled.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/core.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/fixed-width.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/font-awesome.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/icons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/larger.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/list.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/path.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/rotated-flipped.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/stacked.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/less/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_animated.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_bordered-pulled.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_core.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_fixed-width.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_larger.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_path.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_rotated-flipped.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_stacked.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/font-awesome/scss/font-awesome.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/fonts/glyphicons-halflings-regular.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/css/vendor/jquery-guillotine/jquery-guillotine.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/angularApp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/album.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/gallery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/image.bk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/image.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/profile.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/programming.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/recovery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/register.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/controllers/screen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/directives/back-button.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/directives/confirm-action.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/directives/file-model.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/image-bk.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/interceptors/token.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/jquery.guillotine.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/album.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/albumImage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/image.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/login.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/module.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/programming.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/recovery.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/screen.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/token.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/services/user.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-md5/angular-md5.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-spinner/angular-loading-spinner.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-spinner/angular-spinner.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-spinner/angular-spinner.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-spinner/spin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-storage/angular-storage.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular-ui/ui-bootstrap-tpls-0.13.0.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-cookies.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-cookies.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-resource.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-resource.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-route.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-route.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-sanitize.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular-sanitize.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/angular/angular.min.js.map" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/bootstrap-filestyle/bootstrap-filestyle.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/bootstrap-switch/bootstrap-switch.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/bootstrap/bootstrap-theme.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/bootstrap/bootstrap.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/bootstrap/bootstrap.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/cookie/cookie.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/cryptofoo/cryptofoo.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/css/font-awesome.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/css/font-awesome.min.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/fonts/fontawesome-webfont.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/animated.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/bordered-pulled.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/core.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/fixed-width.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/font-awesome.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/icons.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/larger.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/list.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/mixins.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/path.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/rotated-flipped.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/stacked.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/less/variables.less" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_animated.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_bordered-pulled.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_core.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_fixed-width.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_icons.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_larger.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_list.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_mixins.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_path.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_rotated-flipped.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_stacked.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/_variables.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/font-awesome/scss/font-awesome.scss" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/jquery-guillotine/jquery-guillotine.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/jquery/jquery-1.11.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/ng-cordova/ng-cordova.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/ng-flow-standalone/ng-flow-standalone.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/spin/spin.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/store/store.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/js/vendor/store2/store2.min.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/manifest.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/add-to-album.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/album-details.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/album.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/albumup.bk.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/albumup.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/day-programming.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/drive.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/edit-album.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/edit-programming.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/edit-screen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/facebook.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/gallery.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/galleryr.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/gramola.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/home.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/image-duplica.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/image.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/legal.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/new-album.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/new-screen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/profile.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/programming.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/recovery.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/register.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/screen.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/send-album.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/templates.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/upload-image.bk.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/upload-image.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/url.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/partials/video.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/recovery.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/addim.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/album.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/image.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/images/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/.scrutinizer.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/PHPMailerAutoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/VERSION" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/changelog.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/class.phpmailer.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/class.pop3.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/class.smtp.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/composer.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/Callback_function_notes.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/DomainKeys_notes.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/Note_for_SMTP_debugging.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/extending.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/faq.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/generatedocs.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/docs/pop3_article.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/code_generator.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/contents.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/contentsutf8.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/exceptions.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/gmail.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/mail.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/mailing_list.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/pop_before_smtp.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/scripts/XRegExp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/scripts/shAutoloader.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/scripts/shBrushPhp.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/scripts/shCore.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/scripts/shLegacy.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/send_file_upload.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/sendmail.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/smtp.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/smtp_check.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/smtp_no_auth.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/ssl_options.phps" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCore.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreDefault.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreDjango.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreEclipse.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreEmacs.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreFadeToGrey.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreMDUltra.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreMidnight.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shCoreRDark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeAppleScript.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeDefault.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeDjango.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeEclipse.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeEmacs.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeFadeToGrey.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeMDUltra.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeMidnight.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeRDark.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/examples/styles/shThemeVisualStudio.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/extras/EasyPeasyICS.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/extras/README.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/extras/htmlfilter.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/extras/ntlm_sasl_client.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-am.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ar.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-az.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-be.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-bg.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-br.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ca.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ch.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-cz.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-de.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-dk.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-el.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-eo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-es.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-et.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-fa.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-fi.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-fo.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-fr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-gl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-he.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-hr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-hu.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-id.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-it.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ja.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ka.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ko.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-lt.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-lv.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ms.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-nl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-no.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-pl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-pt.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ro.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-ru.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-se.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-sk.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-sl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-sr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-tr.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-uk.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-vi.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-zh.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/language/phpmailer.lang-zh_cn.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/fakepopserver.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/fakesendmail.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/phpmailerLangTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/phpmailerTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/runfakepopserver.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/test_callback.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/test/testbootstrap-dist.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/PHPMailer/travis.phpunit.xml.dist" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/config.ini" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/db_utils.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/functions.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/global.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/ini.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/login.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/includes/model.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/last_image.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/login.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/addfb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/addrive.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/addurl.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/appfb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/appyout.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/checkidR.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/credens.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/envotrasfuns.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/imageaddalbum.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/imagelimina.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/imageordena.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/importfromtpv.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/index.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/lists.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/luk/servrequest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/module.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/programming.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/recovery.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/screen.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/token.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/upload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/mobile/user.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sql/db.sql" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="wayhoy.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -603,25 +174,33 @@
       <option name="presentableId" value="Default" />
       <updated>1479499442570</updated>
       <workItem from="1479548896957" duration="46000" />
-      <workItem from="1479549257661" duration="248000" />
+      <workItem from="1479549257661" duration="687000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <created>1479549804082</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1479549804082</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294000" />
+    <option name="totallyTimeSpent" value="733000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18020834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -643,6 +222,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
