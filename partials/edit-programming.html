@@ -1,0 +1,76 @@
+<div class="container">
+
+    <button data-ng-show="model.programming" class="btn btn-danger btn-block thumbnail" data-toggle="modal" data-target="#myModal">
+        <i class="fa fa-times"></i> eliminar
+    </button>
+	<form data-ng-submit="update()" class="form-horizontal">
+		<div class="form-group thumbnail">
+			<label for="pantallas">pantalla</label>
+			<select class="form-control" id="pantallas" name="pantallas" data-ng-model="model.screen">
+				<option data-ng-repeat="screen in model.screens" value="{{screen.code}}" data-ng-selected="model.screen.code == screen.code">{{screen.name}}</option>
+			</select>
+		</div>
+		<div class="form-group thumbnail">
+			<label for="album">álbum</label>
+            <select class="form-control" id="album" name="album" data-ng-model="model.album">
+                <option data-ng-repeat="album in model.albums" value="{{album.id}}" data-ng-selected="model.album.id == album.id">{{album.name}}</option>
+            </select>
+		</div>
+		<div class="form-group thumbnail">
+            <label for="dias">días</label>
+            <div id="dias" data-ng-repeat="day in model.days">
+                <button id="{{day.id}}" type="button" data-ng-class="model.day && model.day.id == day.id ? 'btn-danger' : 'btn-default'" class="button-checkbox btn btn-block" data-ng-click="toggleDay(day)">{{day.name}}</button>
+            </div>
+		</div>
+		<div class="form-group thumbnail">
+            <label for="horas">horas</label>
+            <div class="row">
+                <div class="col-xs-4">
+                    inicio
+                </div>
+                <div class="col-xs-4">
+                    fin
+                </div>
+            </div>
+			<div class="row" id="horas" data-ng-repeat="time in model.times" class="thumbnail">
+				<div class="col-xs-4">
+                    <select class="form-control" id="inicio" name="inicio" data-ng-model="time.start">
+                        <option data-ng-repeat="interval in model.intervals" value="{{interval}}" data-ng-selected="$parent.$first && model.time && interval + ':00' == model.time.start">{{interval}}</option>
+                    </select>
+				</div>
+				<div class="col-xs-4">
+                    <select class="form-control" id="fin" name="fin" data-ng-model="time.end">
+                        <option data-ng-repeat="interval in model.intervals" value="{{interval}}" data-ng-selected="$parent.$first && model.time && interval + ':00' == model.time.end">{{interval}}</option>
+                    </select>
+				</div>
+				<div class="col-xs-2">
+					<a class="btn btn-default" data-ng-click="addTime()" data-ng-show="$last">+</a>
+				</div>
+				<div class="col-xs-1">
+					<a class="btn btn-default" data-ng-click="removeTime()" data-ng-show="$last && model.times.length > 1">-</a>
+				</div>
+			</div>
+		</div>
+		<button type="submit" class="btn btn-success btn-block thumbnail">gardar</button>
+	</form>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">eliminar programación<h4>
+      </div>
+      <div class="modal-body" id="mod-body">
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">cancelar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="remove(model.programming.programming_id)">ok</button>
+      </div>
+    </div>
+  </div>
+</div>
+      <script>$("html, body").animate({
+ scrollTop:0
+ },"slow");</script>

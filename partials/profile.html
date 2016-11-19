@@ -1,0 +1,23 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="submit()">
+        <h1>cambio de contrasinal</h1>
+        <div class="form-group">
+            <label for="old-password">antigo</label>
+            <span class="label label-danger" data-ng-show="model.errorOldPassword">{{model.errorOldPassword}}</span>
+            <input type="password" class="form-control" id="old-password" data-ng-model="model.oldPassword" placeholder="escreba o antigo contrasinal" required>
+        </div>
+        <div class="form-group">
+            <label for="new-password">novo contrasinal</label>
+            <span class="label label-danger" data-ng-show="model.errorNewPassword">{{model.errorNewPassword}}</span>
+            <input type="password" class="form-control" id="new-password" data-ng-model="model.newPassword" placeholder="contrasinal mínimo 6 caracteres" required>
+        </div>
+        <div class="form-group">
+            <label for="repeat-password">volva a escriber o novo contrasinal</label>
+            <span class="label label-danger" data-ng-show="model.errorRepeatPassword">{{model.errorRepeatPassword}}</span>
+            <input type="password" class="form-control" id="repeat-password" data-ng-model="model.repeatPassword" placeholder="contrasinal mínimo 6 caracteres" required>
+        </div>
+        <span class="label label-success" data-ng-show="model.success">os datos gardáronse correctamente</span><br/>
+        <button type="submit" class="btn btn-success btn-block">cambiar</button>
+    </form>
+</div>

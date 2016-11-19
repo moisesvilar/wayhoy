@@ -1,0 +1,138 @@
+<IfModule mod_rewrite.c>
+
+# Activar RewriteEngine
+Options +FollowSymLinks
+RewriteEngine On
+RewriteBase /
+RewriteRule /?\.htaccess$ - [F,L]
+RewriteRule /?mobile/includes/config.ini$ - [F,L]
+RewriteRule /?api/includes/config.ini$ - [F,L]
+
+#   Token temporal: GET
+#       Entrada:  /token
+#       Salida: token.php
+RewriteRule ^token$ wayhoy/mobile/token.php [QSA,L]
+
+#   Acceso: GET
+#       Entrada:  /login
+#       Salida: login.php
+RewriteRule ^login/?$ wayhoy/mobile/login.php [QSA,L]
+RewriteRule ^login/$ wayhoy/mobile/login.php [QSA,L]
+
+#   Registro de usuario: POST (application/json)
+#       Entrada:  /user
+#       Salida: user.php
+RewriteRule ^users/?$ wayhoy/mobile/user.php [QSA,L]
+
+#   Listado de álbumes: GET
+#   Creación de nuevos álbumes: POST (application/json)
+#   Edición de álbumes recién creados: PUT (application/json)
+#       Entrada:  /album
+#       Salida: album.php
+RewriteRule ^albumes/?$ wayhoy/mobile/album.php [QSA,L]
+
+#   Eliminación de álbumes ya creados: DELETE
+#   Obtención de datos de un album: GET
+#       Entrada:  /albumes/:id
+#       Salida: album.php?id=:id
+RewriteRule ^albumes/(\d+)/?$ wayhoy/mobile/album.php?id=$1 [QSA,L]
+
+#   Listado de fotos de la galería: GET
+#   Subida de imágenes a la galería: POST (multipart/form-data)
+#       Entrada:  /image
+#       Salida: image.php
+RewriteRule ^image/?$ wayhoy/mobile/image.php [QSA,L]
+
+#   Obtención de datos de una imagen: GET
+#   Eliminación de imágenes: DELETE
+#       Entrada:  /image/:id
+#       Salida: image.php?id=:id
+RewriteRule ^image/(\d+)/?$ wayhoy/mobile/image.php?id=$1 [QSA,L]
+
+#   Obtención de datos de una imagen asociada a un álbum: GET
+#   Edición de datos de una imagen: PUT (application/json)
+#   Desasociar una imagen de un álbum: DELETE
+#   Enlazar imágenes ya subidas a un álbum: POST (application/json)
+#       Entrada:  /albumes/:album/image/:id
+#       Salida: image.php?album=:album&id=:id
+RewriteRule ^albumes/(\d+)/image/(\d+)/?$ wayhoy/mobile/image.php?album=$1&id=$2 [QSA,L]
+
+#   Subida de nuevas imágenes a un álbum: POST (multipart/form-data)
+#       Entrada:  /albumes/:album/image/:id
+#       Salida: image.php?album=:album
+RewriteRule ^albumes/(\d+)/image/?$ wayhoy/mobile/image.php?album=$1 [QSA,L]
+
+#   Envío de un álbum al módulo WayHoy: POST (application/json)
+#       Entrada:  /module
+#       Salida: module.php
+RewriteRule ^module/?$ wayhoy/mobile/module.php [QSA,L]
+
+#   Listado de STBs: GET
+#   Añadir un STB a una cuenta de usuario: POST (application/json)
+#   Edición de un STB asociado a cuenta de usuario: PUT (application/json)
+#       Entrada:  /screen
+#       Salida: screen.php
+RewriteRule ^screens/?$ wayhoy/mobile/screen.php [QSA,L]
+
+#   Listado de usuarios de un administrador: GET
+#   Crear un nuevo usuario: POST (application/json)
+#   Edición de los datos de un usuario: PUT (application/json)
+#       Entrada:  /users
+#       Salida: users.php
+RewriteRule ^users/?$ wayhoy/mobile/users.php [QSA,L]
+
+RewriteRule ^permissions/?$ wayhoy/mobile/permissions.php [QSA,L]
+
+RewriteRule ^album-users/?$ wayhoy/mobile/album_users.php [QSA,L]
+
+RewriteRule ^admin_info/?$ wayhoy/mobile/admin_info.php [QSA,L]
+
+RewriteRule ^screen-users/?$ wayhoy/mobile/screen_users.php [QSA,L]
+
+#   Alta de clientes (opAltaCliente): POST
+#       Entrada:  api/customers
+#       Salida: api/customer.php
+RewriteRule ^api/customers/?$ wayhoy/api/customer.php [QSA,L]
+
+#   Modificación de clientes (opModificacionCliente): PUT
+#   Baja de cliente (opBajaCliente): DELETE
+#       Entrada:  api/customers/:idcustomer
+#       Salida: api/customer.php?idCustomer=:idCustomer
+RewriteRule ^api/customers/(\S+)/?$ wayhoy/api/customer.php?idCustomer=$1 [QSA,L]
+
+#   Alta de STBs (opAltaSTB): POST
+#       Entrada:  api/stbs
+#       Salida: api/stb.php
+RewriteRule ^api/stbs/?$ wayhoy/api/stb.php [QSA,L]
+
+#   Modificación de STBs (opModificacionSTB): PUT
+#   Baja de STBs (opBajaSTB): DELETE
+#       Entrada:  api/stbs/:icc
+#       Salida: api/stb.php?icc=:icc
+RewriteRule ^api/stbs/(\S*)/?$ wayhoy/api/stb.php?icc=$1 [QSA,L]
+
+#   Consulta de cliente a partir de ICC: GET
+#   Consulta de album a partir de ICC: GET
+#       Entrada: api/search/:which?query=:icc&language=es|gl
+#       Salida: api/search.php?which=:which&query=:icc&language=es|gl
+RewriteRule ^api/search222/(\S*)/?$ wayhoy/api/search.php?which=$1 [QSA,L]
+
+#   Creación de token a partir de ICC
+#       Entrada: api/tokens
+#       Salida: api/token.php
+RewriteRule ^api/tokens/?$ wayhoy/api/token.php [QSA,L]
+
+#   Obtención de RSS de contratación: GET
+#       Entrada: api/rssAdvertising
+#       Salida: api/rss.php&which=advertising
+RewriteRule ^api/rssAdvertising/?$ wayhoy/api/rss.php?which=advertising [QSA,L]
+
+#   Obtención de RSS de tutorial: GET
+#       Entrada: api/rssTutorial
+#       Salida: api/rss.php&which=tutorial
+RewriteRule ^api/rssTutorial/?$ wayhoy/api/rss.php?which=tutorial [QSA,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)       wayhoy
+</IfModule>

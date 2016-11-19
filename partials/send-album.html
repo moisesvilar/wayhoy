@@ -1,0 +1,35 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <h1 class="album-name">{{album.name}}</h1>
+    <h5>Mostrar en pantalla</h5>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <button type="button"
+                        class="btn btn-default btn-block"
+                        data-ng-confirm
+                        data-ng-confirm-message="vas enviar o álbum {{album.name}} a todas as pantallas. ¿Estás seguro?"
+                        data-ng-confirm-action="sendToAll()"
+                        >
+                    enviar a todas
+                </button>
+            </div>
+        </div>
+    </div>
+    <h5>escolle unha</h5>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group-vertical" role="group" aria-label="">
+                <button type="button"
+                        data-ng-repeat="screen in screens"
+                        class="btn btn-default btn-block"
+                        data-ng-confirm
+                        data-ng-confirm-message="vas enviar o álbum {{album.name}} á pantalla {{screen.name}} ({{screen.code}}). ¿Estás seguro?"
+                        data-ng-confirm-action="send(screen)"
+                >
+                    {{screen.name}}  ({{screen.code}})
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

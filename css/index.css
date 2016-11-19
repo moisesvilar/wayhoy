@@ -1,0 +1,129 @@
+@-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          
+@viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+@-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   
+@viewport { user-zoom: fixed ; min-zoom: 100% ; }
+@font-face {
+    font-family: 'Gerstner';
+    src: url('../fonts/RGerstner.ttf') format('truetype');
+}
+
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+body {
+    -webkit-touch-callout: none;
+    -webkit-text-size-adjust: none
+    -webkit-user-select: none;
+    font-family: 'Gerstner';
+    font-size:12px;
+    height:100%;
+    margin:0px;
+    padding:0px;
+    width:100%;
+}
+.h1 {
+    color: #FF3300;
+}
+.media-heading{
+    color: #FF3300;
+}
+.album-name{
+    color: #FF3300;
+}
+.jumbotron{
+    color: #FF3300;
+}
+hr {
+  color: #FF3300;
+}
+.thumbnail {
+    text-decoration: none;
+    text-align: center;
+}
+
+.thumbnail:hover {
+    text-decoration: none;
+}
+
+.img-item {
+	height: 97px;
+	width: auto;
+}
+
+.album-name {
+    text-align: center;
+}
+
+img[data-flow-img] {
+    max-height: 100px;
+    width: auto;
+}
+
+.btn-group-vertical {
+    width: 100%;
+}
+
+.checkbox label, .radio label {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover,  .navbar-inverse .navbar-nav>li>a:active, .navbar-inverse .navbar-brand:hover, .navbar-inverse .navbar-brand:active {
+    color: #FF3300;
+}
+
+footer {
+    height: 100px;
+}
+#alertas{
+	position:fixed;
+	width:90%;
+	margin:100px 5% auto 5%;
+	padding:5%;
+	background:rgba(0,0,0,0.5);
+	border-radius:5px;
+	min-height:150px;
+	z-index:1000000000000000;
+	display:none;
+	box-shadow:3px 3px 6px black
+}
+div#alertas h1{
+	margin:0;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	color: #FF3300;
+	}
+
+label{
+  background: #c91c1c;
+  background-image: -webkit-linear-gradient(top, #c91c1c, #de4242);
+  background-image: -moz-linear-gradient(top, #c91c1c, #de4242);
+  background-image: -ms-linear-gradient(top, #c91c1c, #de4242);
+  background-image: -o-linear-gradient(top, #c91c1c, #de4242);
+  background-image: linear-gradient(to bottom, #c91c1c, #de4242);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 4px 12px 4px 12px;
+  text-decoration: none;
+}
+
+.button-checkbox {
+    margin-top: 5px;
+}
+
+div#horas.row {
+    margin-top: 5px;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}

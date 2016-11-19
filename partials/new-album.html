@@ -1,0 +1,12 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="submit()">
+        <h1>introduce o nome do álbum</h1>
+        <div class="form-group">
+            <label for="name">nome</label>
+            <span class="label label-danger" data-ng-show="model.errorName">{{model.errorName}}</span>
+            <input type="text" class="form-control" id="name" data-ng-model="model.name" placeholder="nome do álbum" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">enviar</button>
+    </form>
+</div>
