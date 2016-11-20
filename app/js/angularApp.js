@@ -77,6 +77,22 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
             templateUrl: 'partials/upload-image.html',
             controller: 'ImageController'
         })
+        .when('/user', {
+            templateUrl: 'partials/users.html?t='+$.now()+'',
+            controller: 'UsersController'
+        })
+        .when('/users/new', {
+            templateUrl: 'partials/new-user.html',
+            controller: 'UsersController'
+        })
+        .when('/users/:email', {
+            templateUrl: 'partials/edit-user.html',
+            controller: 'UsersController'
+        })
+        .when('/album-users/:album', {
+            templateUrl: 'partials/album-users.html?t='+$.now()+'',
+            controller: 'AlbumUsersController'
+        })
         .when('/screen', {
             templateUrl: 'partials/screen.html',
             controller: 'ScreenController'
@@ -88,6 +104,10 @@ app.config(['$routeProvider', '$httpProvider', '$locationProvider', function($ro
         .when('/screen/:code', {
             templateUrl: 'partials/edit-screen.html',
             controller: 'ScreenController'
+        })
+        .when('/screen-users/:screen', {
+            templateUrl: 'partials/screen-users.html?t='+$.now()+'',
+            controller: 'ScreenUsersController'
         })
         .when('/album', {
             templateUrl: 'partials/album.html',

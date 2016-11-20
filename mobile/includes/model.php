@@ -30,13 +30,39 @@ function user($email) {
  * @param $password string El hash MD5 del nuevo usuario.
  * @return bool|mysqli_result El resultado de la operación.
  */
-function user_in($id, $email, $password) {
+function user_in($id, $email, $password, $name=false, $nif=false, $admin=false) {
     $id = db_escape($id);
     $email = db_escape($email);
     $password = db_escape($password);
-    $q = "
-    UPDATE user SET email = '$email', password = '$password', registration_ts = CURRENT_TIMESTAMP WHERE user_id_r = '$id'
-    ";
+    if(!$name && $nif && !$password && !$admin) {
+        $q = "
+        INSERT INTO user (
+        email,
+        password,
+        registration_ts
+        ) VALUES (
+        '$email',
+        '$password',
+        CURRENT_TIMESTAMP
+        )
+        ON DUPLICATE KEY UPDATE
+        email = '$email',
+        password = '$password',
+        registration_ts = CURRENT_TIMESTAMP
+        ";
+    }
+    else {
+        $q = "
+        INSERT INTO user SET
+        user_id_r = '$id',
+        email = '$email',
+        password = '$password',
+        name = '$name',
+        nif = '$nif',
+        role_id = '3',
+        admin = '$admin'
+        ";
+    }
     return db_query($q);
 }
 
@@ -46,21 +72,37 @@ function user_in($id, $email, $password) {
  * @param string $password El hash MD5 de la nueva contraseña del usuario.
  * @return bool|mysqli_result El resultado de la operación.
  */
-function user_up($email, $password) {
+function user_up($email, $password=false, $name=false, $nif=false) {
     $email = db_escape($email);
-    $password = db_escape($password);
-    $q = "
-    UPDATE user SET
-    password = '$password',
-    update_ts = CURRENT_TIMESTAMP
-    WHERE email = '$email'";
+    if($password) {
+        $password = db_escape($password);
+        $q = "
+        UPDATE user SET
+        password = '$password',
+        update_ts = CURRENT_TIMESTAMP
+        WHERE email = '$email'";
+        return db_query($q);
+    }
+    elseif($name && $nif) {
+        $name = db_escape($name);
+        $nif = db_escape($nif);
+        $q = "
+        UPDATE user SET
+        name = '$name',
+        nif = '$nif',
+        update_ts = CURRENT_TIMESTAMP
+        WHERE email = '$email'
+        ";
+        return db_query($q);
+    }
+}
+
+function user_de($email) {
+    $email = db_escape($email);
+    $q = "UPDATE user SET deleted = CURRENT_TIMESTAMP WHERE email = '$email'";
     return db_query($q);
 }
-function user_de($idCustomer) {
-    $idCustomer = db_escape($idCustomer);
-    $q = " DELETE FROM user WHERE user_id_r = '$idCustomer'";
-    return db_query($q);
-}
+
 /**
  * Obtiene las pantallas de un usuario.
  * @param string $user El email del usuario.
@@ -667,4 +709,66 @@ function setToken($email, $token) {
     ";
     if (db_query($q)) return $token;
     return false;
+}
+
+function permissions($admin, $column=false) {
+    $admin =db_escape($admin);
+    if(!$column) {
+        $q = "SELECT * FROM permissions WHERE user = '$admin'";
+        return db_select($q);
+    }
+    else {
+        $q = "SELECT $column FROM permissions WHERE user = '$admin' LIMIT 1";
+        $row = db_result($q);
+        return array('permission' => $row[$column]);
+    }
+}
+
+function users($admin) {
+    $admin = db_escape($admin);
+    $q = "SELECT * FROM user WHERE admin = '$admin' AND deleted IS NULL";
+    $users = db_result($q, true);
+    foreach($users as $key=>$user) {
+        $users[$key]['permissions'] = get_user_permissions($user);
+    }
+    return db_result($q, true);
+}
+
+function get_user_permissions($user) {
+    $result = array();
+    $q = "SELECT * FROM permissions WHERE user = '$user[email]'";
+    $permissions = db_result($q);
+    $result[] = array(
+        'id' => 'albums',
+        'name' => 'Xestionar álbumes',
+        'value' => $permissions['albums'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'link_images',
+        'name' => 'Asociar / Desasociar imaxes',
+        'value' => $permissions['link_images'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'upload_images',
+        'name' => 'Subir imaxes',
+        'value' => $permissions['upload_images'] ? '1' :  '0'
+    );
+    $result[] = array(
+        'id' => 'programming_albums',
+        'name' => 'Programar albumes',
+        'value' => $permissions['programming_albums'] ? '1' :  '0'
+    );
+    return $result;
+}
+
+function update_permissions($email, $new_permissions){
+    $permissions = permissions($email);
+    if(!$permissions) {
+        $q = "INSERT INTO permissions SET user = '$email'";
+        db_in($q);
+    }
+    foreach($new_permissions as $permission) {
+        $q = "UPDATE permissions SET $permission[id] = '$permission[value]'";
+        db_query($q);
+    }
 }

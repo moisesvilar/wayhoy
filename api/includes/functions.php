@@ -193,4 +193,3 @@ function generar_clave($longitud){
         0, $longitud
     );
 }
-?>

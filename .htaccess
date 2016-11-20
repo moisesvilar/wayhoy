@@ -19,11 +19,6 @@ RewriteRule ^token$ mobile/token.php [QSA,L]
 #       Salida: login.php
 RewriteRule ^login$ mobile/login.php [QSA,L]
 
-#   Registro de usuario: POST (application/json)
-#       Entrada:  /user
-#       Salida: user.php
-RewriteRule ^user$ mobile/user.php [QSA,L]
-
 #   Listado de álbumes: GET
 #   Creación de nuevos álbumes: POST (application/json)
 #   Edición de álbumes recién creados: PUT (application/json)
@@ -73,6 +68,26 @@ RewriteRule ^module/?$ mobile/module.php [QSA,L]
 #       Entrada:  /screen
 #       Salida: screen.php
 RewriteRule ^screen/?$ mobile/screen.php [QSA,L]
+
+#   Listado de usuarios de un administrador: GET
+#   Crear un nuevo usuario: POST (application/json)
+#   Edición de los datos de un usuario: PUT (application/json)
+#       Entrada:  /users
+#       Salida: users.php
+RewriteRule ^users-api/?$ wayhoy/mobile/users_api.php [QSA,L]
+
+RewriteRule ^permissions/?$ wayhoy/mobile/permissions.php [QSA,L]
+
+RewriteRule ^album-users/?$ wayhoy/mobile/album_users.php [QSA,L]
+
+RewriteRule ^admin_info/?$ wayhoy/mobile/admin_info.php [QSA,L]
+
+RewriteRule ^screen-users/?$ wayhoy/mobile/screen_users.php [QSA,L]
+
+#   Registro de usuario: POST (application/json)
+#       Entrada:  /user
+#       Salida: user.php
+RewriteRule ^user$ mobile/user.php [QSA,L]
 
 #   Alta de clientes (opAltaCliente): POST
 #       Entrada:  api/customers

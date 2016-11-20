@@ -18,7 +18,8 @@ angular.module('angularApp').factory('TokenInterceptor', [
             }
             if (user && pass && token) {
                 config.headers['User'] = user;
-                config.headers['Secret'] = md5.createHash(user + pass + token);
+                //config.headers['Secret'] = md5.createHash(user + pass + token);
+                config.headers['Secret'] = pass;
             }
             return config;
         };

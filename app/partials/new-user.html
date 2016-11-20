@@ -1,0 +1,23 @@
+<div class="container">
+    <span data-us-spinner="{radius:30, width:8, length: 16}"></span>
+    <form data-ng-submit="submit()">
+        <h1>introduce os datos do usuario</h1>
+        <div class="form-group">
+            <label for="name">Nome ou razón social</label>
+            <input type="text" class="form-control" id="name" data-ng-model="model.name" placeholder="Nome ou razón social" required>
+        </div>
+        <div class="form-group">
+            <label for="name">email</label>
+            <input type="email" class="form-control" id="email" data-ng-model="model.email" placeholder="email" required>
+        </div>
+        <div class="form-group">
+            <label for="nif">NIF/DNI</label>
+            <input type="text" class="form-control" id="nif" data-ng-model="model.nif" placeholder="NIF ou DNI" required>
+        </div>
+        <div class="form-group">
+            <label for="password">contrasinal</label>
+            <input type="text" class="form-control" id="password" data-ng-model="model.password" placeholder="Contrasinal" required>
+        </div>
+        <button type="submit" class="btn btn-success btn-block">enviar</button>
+    </form>
+</div>
