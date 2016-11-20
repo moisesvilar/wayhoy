@@ -29,12 +29,16 @@ angular.module('angularApp').factory('LoginService', [
                 if(password) store.set(PASSWORD, password);
                 if(password) cookie.set(PASSWORD, password);
                 $http.get(URL, {handleError: true}).
-                    success(function (data, status) {
+                    success(function (data) {
                         callback(null, data);
-                        //TODO: meter en variable global el ISO del idioma
                     }).
                     error(function (err, status) {
                         alert('Usuario ou contrasinal incorrectos');
+                        store.remove(USER);
+                        cookie.remove(USER);
+                        store.remove(PASSWORD);
+                        cookie.remove(PASSWORD);
+                        store.remove(REMEMBER);
                         return callback(status);
                     });
             });

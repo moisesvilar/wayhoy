@@ -12,8 +12,9 @@ function checkCredentials($email, $secret) {
     $user = user($email);
     if (!$user) return false;
     $token = token();
-    $expectedSecret = md5($email.$user['password'].$token);
-    if ($expectedSecret != $secret) {
+    //$expectedSecret = md5($email.$user['password'].$token);
+    $expectedSecret = $user['password'];
+    if ($expectedSecret != md5($secret)) {
         $token = token(1);
         $expectedSecret = md5($email.$user['password'].$token);
         if ($expectedSecret != $secret) return false;
